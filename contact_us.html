@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contact_us.css">
+</head>
+<body>
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <form id="contact-form" action="submit_form.php" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="issue">Issue:</label>
+                <select id="issue" name="issue" required>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Support">Support</option>
+                    <option value="Billing">Billing</option>
+                    <option value="Feedback">Feedback</option>
+                    <option value="Partnership">Partnership</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
