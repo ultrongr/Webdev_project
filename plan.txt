@@ -7,6 +7,6 @@ A records company that:
     - login for users
     - listen songs
     - like songs
-    - add songs to playlist
+    - add songs to playlist (maybe)
 
     - allows artists to contact the company for a record deal
