@@ -1,97 +1,77 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
+:root {
     font-size: 10px;
-    background-image: linear-gradient(to bottom left, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/record.png");
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/record.png');
+    background-repeat: no-repeat;
     background-size: cover;
-}
-
-.topnav {
-    overflow: hidden;
-    background-color: #555;
-    border-radius: 1em;
-}
-
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
+    margin: 0;
     padding: 20px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.topnav #login_button {
-    float: right;
-    background: #e33;
-}
-
-.topnav #login_button:hover {
-    background: #fbb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .login-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #555a;
-    width: 75%;
-    height: 50%;
-    padding: 20px;
-    border-radius: 48px;
-    text-align: center;
-}
-
-.login-container h2 {
-    margin-bottom: 20px;
-    color: #fff;
-    font-size: 40px;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 30px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #aaaa;
+    background-color: #3333;
+    padding: 40px;
     border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
+h1 {
+    font-size: 32px;
     color: #fff;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+input[type="username"],
+input[type="password"],
+select,
+textarea {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-container button {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    background-color: #3332;
-    color: #fff;
     text-align: center;
 }
 
-footer p {
-    font-size: 15px;
+.button-container button:hover {
+    /* background-color: #0056b3; */
+    background-color: #333;
 }

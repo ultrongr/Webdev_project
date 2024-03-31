@@ -1,11 +1,11 @@
 :root {
-	font-size: 10px;
+    font-size: 10px;
 }
 
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url('images/record.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/record.png');
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
@@ -17,16 +17,17 @@ body {
 }
 
 .contact-container {
-    /* background-color: #fff; */
+    background-color: #3333;
     padding: 40px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
 }
 
 h1 {
-    color: #333;
+    font-size: 32px;
+    color: #fff;
 }
 
 .form-group {
@@ -37,7 +38,7 @@ label {
     display: block;
     font-weight: bold;
     font-size: 1.5em;
-    color: #444;
+    color: #fff;
     margin-bottom: 5px;
 }
 
@@ -45,25 +46,32 @@ input[type="text"],
 input[type="email"],
 select,
 textarea {
-    color: #555;
-    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
     padding: 10px;
     margin-top: 5px;
     border-radius: 5px;
-    border: 1px ;
+    border: 1px;
 }
 
-button[type="submit"] {
-    background-color:rgba(0,0,0,0.6);
-    color: #222;
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-container button{
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
 }
 
-button[type="submit"]:hover {
+.button-container button:hover {
     /* background-color: #0056b3; */
-    background-color:#333;
+    background-color: #333;
 }
