@@ -1,0 +1,12 @@
+A records company that:
+    - displays the artists signed with this company
+    - displays the albums released by the artists
+    - displays the songs in the albums
+    - displays upcoming events
+
+    - login for users
+    - listen songs
+    - like songs
+    - add songs to playlist
+
+    - allows artists to contact the company for a record deal

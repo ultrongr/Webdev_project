@@ -1,0 +1,66 @@
+/* music player */
+:root {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(images/record.png);
+    background-size: cover;
+}
+
+.music-player-section {
+    width: 98%;
+    height: 98%;
+    padding: 1%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.seek-bar {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    width: 60vh;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.song-name{
+    font-size: 3em;
+    text-align: center;
+    text-transform: capitalize;
+}
+.artist-name{
+    font-size: 1.5em;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.cover {
+    width: 60vh;
+    height: 30%;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 10%;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+.time{
+    display: flex;
+    justify-content: space-between;
+}
+
+.controls {
+    position: relative;
+    width: 40vh;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.material-symbols-outlined.md-48{
+    font-size: 48px;
+    font-variation-settings:
+            'FILL' 0,
+            'wght' 300,
+            'GRAD' 0,
+            'opsz' 24;
+}
