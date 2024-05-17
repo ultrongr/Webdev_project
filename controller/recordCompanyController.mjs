@@ -27,7 +27,7 @@ export async function login(req, res) {
 
 export async function songPlayer(req, res) {
     try{
-        res.render('song-player', {song: "request.song"});
+        res.render('song-player', {song: "request.song", artist: "request.artist", image: "/images/record.png"});
     } catch (error) {
         res.send(`Error: ${error}`);
     }
