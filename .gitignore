@@ -60,6 +60,8 @@ typings/
 # next.js build output
 .next
 
-# Large audio files
 public/albums
+
+
+
 package-lock.json
