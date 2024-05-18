@@ -9,19 +9,23 @@
 
     <img src="{{image}}" class="cover" alt="">
 
+    <audio src="{{{audio}}}" id="audio-player"></audio>
+
     <div class="seek-bar">
         <input type="range" min="0" max="100" value="0" class="seek-bar" id="seek-bar">
         <div class="time">
-            <p class="current-time">0:00</p>
-            <p class="duration">0:00</p>
+            <p id="current-time">0:00</p>
+            <p id="duration">0:00</p>
         </div>
     </div>
 
     <div class="controls">
-        <span class="material-symbols-outlined md-48">fast_rewind</span>
-        <span class="material-symbols-outlined md-48">play_arrow</span>
-        <span class="material-symbols-outlined md-48">pause</span>
-        <span class="material-symbols-outlined md-48">fast_forward</span>
+        <span class="material-symbols-outlined md-48" id="seek-backward">fast_rewind</span>
+        <span class="material-symbols-outlined md-48" id="play">play_arrow</span>
+        <span class="material-symbols-outlined md-48" id="pause" style="display: none;">pause</span>
+        <span class="material-symbols-outlined md-48" id="seek-forward">fast_forward</span>
     </div>
+
+    <script src="scripts/audio-controls.js"></script>
 
 </section>

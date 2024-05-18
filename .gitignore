@@ -60,7 +60,5 @@ typings/
 # next.js build output
 .next
 
-
-# SQLITE
-model/tasks.sqlite-shm
-model/tasks.sqlite-wal
+# Large audio files
+public/albums

@@ -26,8 +26,12 @@ export async function login(req, res) {
 }
 
 export async function songPlayer(req, res) {
+    const context = {
+        audioPath: encodeURIComponent("/albums/The Dark Side of the Moon/03 Time.mp3").replace(/%2F/g, '/')
+    };
+
     try{
-        res.render('song-player', {song: "request.song", artist: "request.artist", image: "/images/record.png"});
+        res.render('song-player', {song: "request.song", artist: "request.artist", image: "/images/record.png", audio: context.audioPath});
     } catch (error) {
         res.send(`Error: ${error}`);
     }
