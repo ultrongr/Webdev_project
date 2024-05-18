@@ -60,7 +60,8 @@ typings/
 # next.js build output
 .next
 
-public/albums
+# skip large audio files
+public/albums/**/*.mp3
 
 
 
