@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for webdev-project-wandering-star-6595 on 2024-05-18T20:47:40+03:00
+# fly.toml app configuration file generated for webdev-project on 2024-05-18T20:59:42+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'webdev-project-wandering-star-6595'
+app = 'webdev-project'
 primary_region = 'ams'
 
 [build]
