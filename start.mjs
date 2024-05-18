@@ -1,6 +1,6 @@
 import { recordCompany } from "./app.mjs";
 
-const PORT = 3000;
+const PORT = 8080;
 const server = recordCompany.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
