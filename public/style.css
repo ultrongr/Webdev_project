@@ -18,9 +18,11 @@ body {
 .body-container {
     width: 100%;
     height: 100%;
+    min-height: 87vh;
     justify-content: center;
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
 }
 
 /*** 0.1 - NavBar ***/
@@ -34,7 +36,7 @@ body {
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 20px;
+    padding: 2vh 1vw;
     text-decoration: none;
     font-size: 15px;
 }
@@ -56,13 +58,13 @@ body {
 /*** 1.0 - Front Page ***/
 .description {
     display: flex;
-    margin: 40px 0px;
+    margin: 4vh 0px;
 }
 
 .description .text-container {
     color: #fff;
     font-size: 24px;
-    margin: 10px;
+    margin: 1vh 1vw;
     text-align: center;
 }
 
@@ -73,58 +75,63 @@ body {
 .description .logo {
     width: 20%;
     height: 20%;
+    min-height: 200px;
+    min-width: 200px;
     background-size: cover;
     border-radius: 300px;
-    padding: 10px;
+    padding: 1vh 1vw;
 }
 
 .artist-section {
     background-color: #5555;
     border-radius: 30px;
-    margin: 15px;
+    margin: 1vh 1vw;
 }
 
 .artist-section .header {
     color: #fff;
-    padding: 10px 25px;
+    padding: 1vh 2vw;
     font-size: 42px;
 }
 
 .artist-container {
-    white-space: nowrap;
-    overflow-x: scroll;
-    scrollbar-color: #ddd #555;
-    scrollbar-width: thin;
+    width: 95vw;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .artist {
     display: inline-block;
-    width: 300px;
-    height: 225px;
-    margin: 10px;
+    width: 16vw;
+    height: 25vh;
+    margin: 1vh 1vw;
     text-align: center;
+    justify-content: center;
     background-size: cover;
     background-position: center;
     border-radius: 35px;
-    padding: 10px;
 }
 
-.artist h3 {
-    margin-top: 60%;
-    margin-bottom: 10px;
+.artist a {
     color: #fff;
     font-size: 28px;
-    padding: 0px;
-    border-radius: 35px;
+    position: relative;
+    top: 75%;
+    text-decoration: none;
 }
 
-.artist h3:onhover {
-    color: #000;
+.artist a:hover {
+    color: #fff7;
+    cursor: pointer;
+}
+
+.artist .material-symbols-outlined {
+    display: inline-block;
+    color: #ccc;
 }
 
 /*** 2.0 - Login Page ***/
 .login-container {
-    margin-top: 10vh;
     background-color: #3333;
     padding: 40px;
     border-radius: 5px;
@@ -273,7 +280,6 @@ textarea {
 
 /*** 4.0 - Contact Page ***/
 .contact-container {
-    margin-top: 10vh;
     background-color: #3333;
     padding: 40px;
     border-radius: 5px;
@@ -387,6 +393,7 @@ textarea {
     margin: auto;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .material-symbols-outlined.md-48 {
@@ -401,12 +408,12 @@ textarea {
 /*** X.0 - Footer ***/
 
 footer {
-    margin-top: 10vh;
     width: 100%;
     background-color: #3332;
     color: #fff;
     text-align: center;
-    padding: 10px;
+    margin-top: 1vh;
+    padding: 1vh 0vw 0vh 0vw;
 }
 
 footer p {

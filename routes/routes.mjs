@@ -6,6 +6,6 @@ const recordCompanyController = await import('../controller/recordCompanyControl
 router.get('/', recordCompanyController.home);
 router.get('/contact', recordCompanyController.contact);
 router.get('/login', recordCompanyController.login);
-router.get('/song-player', recordCompanyController.songPlayer);
+router.get('/song-player/:songName', recordCompanyController.songPlayer);
 
 export default router;

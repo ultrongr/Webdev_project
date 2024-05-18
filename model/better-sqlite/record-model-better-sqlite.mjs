@@ -27,6 +27,17 @@ export let getArtistById = (id) => {
     }
 }
 
+export let getArtistByName = (name) => {
+    const stmt = sql.prepare('SELECT * FROM ARTIST WHERE NAME = ?');
+    let artist;
+    try {
+        artist = stmt.get(name);
+        return artist;
+    } catch (error) {
+        return error;
+    }
+}
+
 //Users
 export let getUserByUsername = (username) => {
     const stmt = sql.prepare('SELECT * FROM USER WHERE USERNAME = ?');
@@ -50,7 +61,6 @@ export let getFavouriteArtistsByUsername = (username) => {
     }
 }
 
-
 //Songs
 export let getAllSongs = () => {
     const stmt = sql.prepare('SELECT * FROM SONG');
@@ -68,6 +78,17 @@ export let getSongById = (id) => {
     let song;
     try {
         song = stmt.get(id);
+        return song;
+    } catch (error) {
+        return error;
+    }
+}
+
+export let getSongByName = (name) => {
+    const stmt = sql.prepare('SELECT * FROM SONG WHERE NAME = ?');
+    let song;
+    try {
+        song = stmt.get(name);
         return song;
     } catch (error) {
         return error;
