@@ -45,6 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const seekTo = audio.duration * (seekBar.value / 100);
         audio.currentTime = seekTo;
         audio.play();
+        playButton.style.display = 'none';
+        pauseButton.style.display = 'inline-block';
     });
 
     // Seek backward
