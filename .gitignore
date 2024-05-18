@@ -62,3 +62,4 @@ typings/
 
 # Large audio files
 public/albums
+package-lock.json
