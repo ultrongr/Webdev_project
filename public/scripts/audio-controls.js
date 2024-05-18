@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     seekBar.addEventListener('input', function () {
         const seekTo = audio.duration * (seekBar.value / 100);
         audio.currentTime = seekTo;
+        audio.play();
     });
 
     // Seek backward
