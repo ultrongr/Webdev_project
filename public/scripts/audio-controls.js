@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const seekBackwardButton = document.getElementById('seek-backward');
     const seekForwardButton = document.getElementById('seek-forward');
 
+    seekBar.value = 0;
+    audio.pause();
+    playButton.style.display = 'inline-block';
+    pauseButton.style.display = 'none';
 
     // Load metadata and set initial duration
     audio.addEventListener('loadedmetadata', function () {
