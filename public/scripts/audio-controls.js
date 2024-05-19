@@ -2,16 +2,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const audio = document.getElementById('audio-player');
     const playButton = document.getElementById('play');
     const pauseButton = document.getElementById('pause');
+    const stopButton = document.getElementById('stop');
     const seekBar = document.getElementById('seek-bar');
     const currentTimeText = document.getElementById('current-time');
     const durationText = document.getElementById('duration');
     const seekBackwardButton = document.getElementById('seek-backward');
     const seekForwardButton = document.getElementById('seek-forward');
 
+    const pause = () => {
+        audio.pause();
+        playButton.style.display = 'inline-block';
+        pauseButton.style.display = 'none';
+    }
+    const play = () => {
+        audio.play();
+        playButton.style.display = 'none';
+        pauseButton.style.display = 'inline-block';
+    }
+
     seekBar.value = 0;
-    audio.pause();
-    playButton.style.display = 'inline-block';
-    pauseButton.style.display = 'none';
+    pause();
 
     // Load metadata and set initial duration
     audio.addEventListener('loadedmetadata', function () {
@@ -19,15 +29,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Play/Pause functionality
-    playButton.addEventListener('click', function () {
-        audio.play();
-        playButton.style.display = 'none';
-        pauseButton.style.display = 'inline-block';
-    });
-    pauseButton.addEventListener('click', function () {
+    playButton.addEventListener('click', play);
+    pauseButton.addEventListener('click', pause);
+
+    // Stop functionality
+    stopButton.addEventListener('click', function () {
         audio.pause();
-        playButton.style.display = 'inline-block';
-        pauseButton.style.display = 'none';
+        window.history.back();
     });
 
     // Update seek bar as audio plays
@@ -44,19 +52,19 @@ document.addEventListener('DOMContentLoaded', function () {
     seekBar.addEventListener('input', function () {
         const seekTo = audio.duration * (seekBar.value / 100);
         audio.currentTime = seekTo;
-        audio.play();
-        playButton.style.display = 'none';
-        pauseButton.style.display = 'inline-block';
+        play();
     });
 
     // Seek backward
     seekBackwardButton.addEventListener('click', function () {
         audio.currentTime = Math.max(0, audio.currentTime - 10);
+        play();
     });
 
     // Seek forward
     seekForwardButton.addEventListener('click', function () {
         audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+        play();
     });
 
     // Format time as mm:ss
