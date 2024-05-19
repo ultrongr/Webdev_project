@@ -18,7 +18,11 @@
             <br>
         </li>
         {{else}}
+        {{#if artist.Sex}}
             <h2>{{artist.Name}} hasn't released any songs yet,</h2>
+        {{else}}
+            <h2>{{artist.Name}} haven't released any songs yet.</h2>
+        {{/if}}
         {{/each}}
 
     </ul>
@@ -37,7 +41,11 @@
                 </div>
             </li>
             {{else}}
-            <h2>{{artist.Name}} is not participating in any events right now.</h2>
+            {{#if artist.Sex}}
+                <h2>{{artist.Name}} is not participating in any events right now.</h2>
+            {{else}}
+                <h2>{{artist.Name}} are not participating in any events right now.</h2>
+            {{/if}}
             {{/each}}
             
 
