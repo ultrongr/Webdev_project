@@ -17,6 +17,8 @@
             <p>{{Name}}              </p>
             <br>
         </li>
+        {{else}}
+            <h2>{{artist.Name}} hasn't released any songs yet,</h2>
         {{/each}}
 
     </ul>
@@ -34,6 +36,8 @@
                     <p>Location: {{Location}}</p>
                 </div>
             </li>
+            {{else}}
+            <h2>{{artist.Name}} is not participating in any events right now.</h2>
             {{/each}}
             
 
