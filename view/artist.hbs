@@ -1,0 +1,50 @@
+<div class="bio-section">
+    <img src="/{{artist.picture}}" style="height: 200px; width: auto;" class="artist-image">
+    <div class="artist-info">
+        <h1>{{artist.Name}}<button class="favorite-button">&#10084;</button></h1>
+        
+        <p>{{artist.Bio}}</p>
+    </div>
+</div>
+
+<div class="songs-list">
+    <h1>Songs by {{artist.Name}}</h1>
+    <ul>
+        {{#each songs}}
+        <li class="song">
+            <a href="../../song-player/{{Name}}"> 
+            <img src="{{picture}}" alt="{{Name}}"></a>
+            <p>{{Name}}              </p>
+            <br>
+        </li>
+        {{else}}
+            <h2>{{artist.Name}} hasn't released any songs yet,</h2>
+        {{/each}}
+
+    </ul>
+</div>
+
+<div class="upcoming-events">
+    <h1>Upcoming Events</h1>
+        <ul>
+            {{#each events}}
+            <li>
+                <img src="/{{picture}}" class="event-image">
+                <div class="event-info">
+                    <h3>{{Title}}</h3>
+                    <p>Date: {{Date}}</p>
+                    <p>Location: {{Location}}</p>
+                </div>
+            </li>
+            {{else}}
+            <h2>{{artist.Name}} is not participating in any events right now.</h2>
+            {{/each}}
+            
+
+            <!-- Add more events as needed -->
+        </ul>
+    </h2>
+
+</div>
+
+

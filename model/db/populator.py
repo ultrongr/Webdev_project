@@ -31,6 +31,19 @@ def add_song(_id, name, artist_id, album_id, pg, release_date, song_file, pictur
     )
     con.commit()
 
+def add_event(_id, date, title, type, description, location, picture):
+    cur.execute(
+        "INSERT INTO EVENT (ID, Date, Title, Type, Description, Location, picture) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        (_id, date, title, type, description, location, picture),
+    )
+    con.commit()
+
+def add_Participates(artist_id, event_id):
+    cur.execute(
+        "INSERT INTO Participates (Artist_id, Event_id) VALUES (?, ?)",
+        (artist_id, event_id),
+    )
+    con.commit()
 
 clear_db()
 
@@ -46,3 +59,23 @@ add_song('1', 'Speak to Me', '2', '1', 18, '1973-03-01', '/albums/The Dark Side 
 add_song('2', 'On the Run', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/02 On the Run.mp3', '/albums/The Dark Side of the Moon/cover.png')
 add_song('3', 'Time', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/03 Time.mp3', '/albums/The Dark Side of the Moon/cover.png')
 add_song('4', 'The Great Gig in the Sky', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/04 The Great Gig in the Sky.mp3', '/albums/The Dark Side of the Moon/cover.png')
+
+add_event('1', 
+        '2024-07-12',
+        'Eminem Live Concert',
+        'Concert',
+        'Eminem will be performing live at Wembley Stadium in London. Tickets are available now!',
+        'Wembley Stadium, London',
+        'images/events/eminem_concert.jpg')
+
+add_event('2',
+        '1994-07-02',
+        'Pink Floyd Live Concert',
+        'Concert',
+        'Pink Floyd will be performing live at Earls Court in London. Tickets are available now!',
+        'Earls Court, London',
+        'images/events/pinkfloyd_concert.jpg')
+
+add_Participates('1', '1')
+add_Participates('2', '2')
+

@@ -42,3 +42,18 @@ export async function songPlayer(req, res) {
         res.send(`Error: ${error}`);
     }
 }
+
+export async function artist(req, res) {
+    const artist = model.getArtistByName(req.params.artistName);
+    if (artist === undefined) {
+        res.send('Artist not found');
+        return;
+    }
+    const songs = model.getSongsByArtistId(artist.ID);
+    const events = model.getEventsByArtistId(artist.ID);
+    try{
+        res.render('artist', { artist: artist, songs: songs, events: events });
+    } catch (error) {
+        res.send(`Error: ${error}`);
+    }
+}

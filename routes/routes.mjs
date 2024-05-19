@@ -7,5 +7,6 @@ router.get('/', recordCompanyController.home);
 router.get('/contact', recordCompanyController.contact);
 router.get('/login', recordCompanyController.login);
 router.get('/song-player/:songName', recordCompanyController.songPlayer);
+router.get('/artist/:artistName', recordCompanyController.artist);
 
 export default router;

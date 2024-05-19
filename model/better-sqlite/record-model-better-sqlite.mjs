@@ -142,7 +142,7 @@ export let getAlbumById = (id) => {
 
 //Events
 export let getEventsByArtistId = (id) => {
-    const stmt = sql.prepare('SELECT * FROM EVENT WHERE Artist_id = ?');
+    const stmt = sql.prepare('SELECT * FROM EVENT WHERE ID in (SELECT Event_id FROM Participates WHERE Artist_id = ?)');
     let events;
     try {
         events = stmt.all(id);
