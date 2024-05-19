@@ -193,16 +193,19 @@ textarea {
 
 /*** 3.0 - Artist Page ***/
 .bio-section {
-    background-image: url('artists/Pink-Floyd.jpg');
-    background-position: center bottom;
-    background-repeat: no-repeat;
     color: white;
     background-size: cover;
     padding: 2em;
-    background-position: center;
     text-shadow: 0.1em 0.1em 0.2em black;
+    font-size: 2em;
 
     height: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.artist-image {
+    margin-right: 20px;
 }
 
 .bio-section h1 {
@@ -210,10 +213,15 @@ textarea {
     display: inline-block;
 }
 
-.bio-section button {
+.artist-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.favorite-button {
     margin-left: 0.5em;
     padding: 0em 0em;
-    font-size: 2em;
+    font-size: 1em;
     cursor: pointer;
     background-color: rgb(0, 0, 0, 0);
     color: red;
@@ -228,12 +236,8 @@ textarea {
     color: white;
     text-shadow: 0.2em 0.2em 0.3em black;
     padding: 2em;
-    /* size: 100%; */
-    background-image: url('images/songs_list_bg.jpg');
-    background-size: contain;
-    background-position: center;
-    /* background-repeat: no-repeat; */
-    /* flex:auto; */
+    align-self: flex-start;
+    
 }
 
 .songs-list h2 {
@@ -249,18 +253,28 @@ textarea {
     margin: 1em 0;
 }
 
-.songs-list ul img {
-    border: 0.1em solid black;
-    border-radius: 0.4em;
-    height: 5em;
-    width: 5em;
+.songs-list song {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    background-color: #f0f0f0;
+    border-radius: 0.5em;
+
 }
 
-.songs-list ul img:hover {
+.songs-list ul img {
+    border: 0.2em solid black;
+    border-radius: 0.4em;
+    height: 10em;
+    width: auto;
+}
+
+.songs-list li img:hover {
     border-color: #007bff;
 }
 
-.songs-list>img {
+.songs-list song{
     border: 0.1em solid #ddd;
     border-radius: 0.4em;
     height: 5em;

@@ -1,0 +1,24 @@
+<div class="bio-section">
+    <img src="/images/artists/PinkFloyd.jpg" style="height: 200px; width: auto;" class="artist-image">
+    <div class="artist-info">
+        <h1>{{artist.Name}}<button class="favorite-button">&#10084;</button></h1>
+        
+        <p>{{artist.Bio}}</p>
+    </div>
+</div>
+
+<div class="songs-list">
+    <h2>Songs by {{artist.Name}}</h2>
+    <ul>
+        {{#each songs}}
+        <li class="song">
+            <a href="../../song-player/{{Name}}"> 
+            <img src="{{picture}}" alt="{{Name}}"></a>
+            {{Name}}              
+            <br>
+        </li>
+        {{/each}}
+
+    </ul>
+</div>
+
