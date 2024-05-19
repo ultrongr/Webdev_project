@@ -24,7 +24,11 @@
         {{/each}}
         <div class="artist" id="more">
             <a href="/artists">Discover More</a>
-            <span class="material-symbols-outlined">add_circle</span>
         </div>
+        <script>
+            document.getElementById("more").addEventListener("click", function () {
+                window.location.href = "/artists";
+            });
+        </script>
     </div>
 </div>
