@@ -50,11 +50,9 @@ export async function artist(req, res) {
         return;
     }
     const songs = model.getSongsByArtistId(artist.ID);
-    // for (let i = 0; i < songs.length; i++) {
-    //     console.log(songs[i].Name);
-    // }
+    const events = model.getEventsByArtistId(artist.ID);
     try{
-        res.render('artist', { artist: artist, songs: songs });
+        res.render('artist', { artist: artist, songs: songs, events: events });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
