@@ -26,6 +26,14 @@ export async function login(req, res) {
     }
 }
 
+export async function register(req, res) {
+    try{
+        res.render('register', {title: 'Register'});
+    } catch (error) {
+        res.send(`Error: ${error}`);
+    }
+}
+
 export async function songPlayer(req, res) {
     const song = model.getSongByName(req.params.songName);
     if (song === undefined) {

@@ -465,3 +465,17 @@ footer p {
     margin: 5px 0;
     font-size: 15px;
 }
+
+/*** Register Page ***/
+
+.register-container {
+    background-color: #3333;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+
+
