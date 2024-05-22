@@ -20,7 +20,7 @@ export async function contact(req, res) {
 
 export async function login(req, res) {
     try{
-        res.render('login', {title: 'Login'});
+        res.render('login', {title: 'Login', message: '⚠ hey'});
     } catch (error) {
         res.send(`Error: ${error}`);
     }

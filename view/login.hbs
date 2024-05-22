@@ -9,6 +9,12 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
+        
+        <div class="message-container">
+            {{#if message}}
+                <h2 id="message">{{message}}</h2>
+            {{/if}}
+        </div>
         <div class="button-container">
             <button type="login">Log In</button>
             <button type="register" onclick="goregister()">No Account?</button>

@@ -4,11 +4,11 @@ import * as userModel from '../model/better-sqlite/record-model-sqlite.mjs';
 
 
 export let showLogInForm = function (req, res) {
-    res.render('login', {});
+    res.render('login', {message: '⚠ hey'});
 }
 
 export let showRegisterForm = function (req, res) {
-    res.render('register', {});
+    res.render('register', {message: '⚠ hey'});
 }
 
 export let doRegister = async function (req, res) {

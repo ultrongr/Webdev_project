@@ -17,6 +17,11 @@
             <label for="confirm-password">Confirm Password:</label>
             <input type="password" id="confirm-password" name="confirm-password" required>
         </div>
+        <div class="message-container">
+            {{#if message}}
+                <h2 id="message">{{message}}</h2>
+            {{/if}}
+        </div>
         <div class="button-container">
             <button type="submit">Register</button>
             <button type="login" onclick="gologin()">Already have an account?</button>

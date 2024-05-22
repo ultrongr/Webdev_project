@@ -191,6 +191,18 @@ textarea {
     border: 1px;
 }
 
+.message-container {
+    /* background-color: #3333; */
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px; 
+
+}
+
 .button-container {
     display: flex;
     justify-content: space-between;
