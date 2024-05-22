@@ -19,10 +19,14 @@
         </div>
         <div class="button-container">
             <button type="submit">Register</button>
+            <button type="login" onclick="gologin()">Already have an account?</button>
             <button type="button" onclick="goback()">Back</button>
             <script>
                 function goback() {
                     window.location.href = "/";
+                }
+                function gologin() {
+                    window.location.href = "/login";
                 }
             </script>
         </div>

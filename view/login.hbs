@@ -11,10 +11,14 @@
         </div>
         <div class="button-container">
             <button type="login">Log In</button>
+            <button type="register" onclick="goregister()">No Account?</button>
             <button type="button" onclick="goback()">Back</button>
             <script>
                 function goback() {
                     window.location.href = "/";
+                }
+                function goregister() {
+                    window.location.href = "/register";
                 }
             </script>
         </div>
