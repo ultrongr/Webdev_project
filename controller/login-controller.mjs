@@ -1,81 +1,69 @@
 import bcrypt from 'bcrypt'
 
-import * as userModel from '../model/better-sqlite/record-model-sqlite.mjs';
+import * as userModel from '../model/better-sqlite/record-model-better-sqlite.mjs';
 
 
 export let showLogInForm = function (req, res) {
-    res.render('login', {message: '⚠ hey'});
+    res.render('login', {title: 'Login'});
 }
 
 export let showRegisterForm = function (req, res) {
-    res.render('register', {message: '⚠ hey'});
+    res.render('register', {title: 'Register'});
 }
 
-export let doRegister = async function (req, res) {
+export let doRegister = function (req, res) {
     try {
-        const registrationResult = await userModel.registerUser(req.body.username, req.body.password);
-        if (registrationResult.message) {
-            res.render('register-password', { message: registrationResult.message })
+        const existingUser =  userModel.getUserByUsername(req.body.username);
+        if (existingUser != undefined) {
+            res.render('register', { message: 'This username is already in use!' });
+            console.log('This username is already in use!');
+            return;
+        }
+        if (req.body.password !== req.body.confirmPassword) {
+            res.render('register', { message: 'Passwords do not match!' });
+            console.log('Passwords do not match!');
+            return;
+        }
+
+        const saltRounds = 10;
+        const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
+        const registrationResult =  userModel.registerUser(req.body.username, hashedPassword);
+        if (registrationResult.message!== 'Registration successful!') {
+            res.render('register', { message: registrationResult.message })
+            console.log(registrationResult.message)
         }
         else {
+            console.log('Registration successful!');
+            console.log('Redirecting to login page');
             res.redirect('/login');
+            
         }
     } catch (error) {
         console.error('registration error: ' + error);
-        //FIXME: δε θα έπρεπε να περνάμε το εσωτερικό σφάλμα στον χρήστη
-        res.render('register-password', { message: error });
+        res.render('register', { message: error });
     }
 }
 
-export let doLogin = async function (req, res) {
-    //Ελέγχει αν το username και το password είναι σωστά και εκτελεί την
-    //συνάρτηση επιστροφής authenticated
-
-    const user = await userModel.getUserByUsername(req.body.username);
-    if (user == undefined || !user.password || !user.id) {
-        res.render('login-password', { message: 'Δε βρέθηκε αυτός ο χρήστης' });
-    }
-    else {
-        const match = await bcrypt.compare(req.body.password, user.password);
-        if (match) {
-            //Θέτουμε τη μεταβλητή συνεδρίας "loggedUserId"
-            req.session.loggedUserId = user.id;
-            //Αν έχει τιμή η μεταβλητή req.session.originalUrl, αλλιώς όρισέ τη σε "/" 
-            // res.redirect("/");            
-            const redirectTo = req.session.originalUrl || "/tasks";
-
-            res.redirect(redirectTo);
+export let doLogIn = function (req, res) {
+    try {
+        const user =  userModel.getUserByUsername(req.body.username);
+        if (user === undefined) {
+            res.render('login', { message: 'Username not found!' });
+            return;
         }
-        else {
-            res.render("login", { message: 'Ο κωδικός πρόσβασης είναι λάθος' })
+
+        if (bcrypt.compareSync(req.body.password, user.Hash_password)) {
+            req.session.username = user.username;
+            res.redirect('/');
+        } else {
+            res.render('login', { message: 'Wrong password!' });
         }
+    } catch (error) {
+        console.error('login error: ' + error);
+        res.render('login', { message: error });
     }
 }
 
-export let doLogout = (req, res) => {
-    //Σημειώνουμε πως ο χρήστης δεν είναι πια συνδεδεμένος
-    req.session.destroy();
-    res.redirect('/');
-}
-
-//Τη χρησιμοποιούμε για να ανακατευθύνουμε στη σελίδα /login όλα τα αιτήματα από μη συνδεδεμένους χρήστες
-export let checkAuthenticated = function (req, res, next) {
-    //Αν η μεταβλητή συνεδρίας έχει τεθεί, τότε ο χρήστης είναι συνεδεμένος
-    if (req.session.loggedUserId) {
-        console.log("user is authenticated", req.originalUrl);
-        //Καλεί τον επόμενο χειριστή (handler) του αιτήματος
-        next();
-    }
-    else {
-        //Ο χρήστης δεν έχει ταυτοποιηθεί, αν απλά ζητάει το /login ή το register δίνουμε τον
-        //έλεγχο στο επόμενο middleware που έχει οριστεί στον router
-        if ((req.originalUrl === "/login") || (req.originalUrl === "/register")) {
-            next()
-        }
-        else {
-            //Στείλε το χρήστη στη "/login" 
-            console.log("not authenticated, redirecting to /login")
-            res.redirect('/login');
-        }
-    }
+export let doLogOut = function (req, res) {
+    res.redirect('/login');
 }

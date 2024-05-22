@@ -8,6 +8,9 @@ import exphbs from 'express-handlebars';
 //(extended:false σημαίνει πως δε χρειαζόμαστε να διαβάσουμε εμφωλευμένα αντικείμενα που έχουν έρθει με το αίτημα POST)
 app.use(express.urlencoded({ extended: false }));
 
+import recordSession from './app-setup/app-setup-session.mjs';
+app.use(recordSession);
+
 //Το template μας μπορεί να χρειάζεται να φορτώσει κάποια CSS ή JS
 //Δηλώνουμε πως θα βρίσκονται στον φάκελο /public
 //Για παράδειγμα το /views/layouts/layout.hbs φορτώνει αρχεία με αυτό τον τρόπο, π.χ.

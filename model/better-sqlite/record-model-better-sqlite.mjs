@@ -39,8 +39,19 @@ export let getArtistByName = (name) => {
 }
 
 //Users
+
+export let registerUser = (username, password) => {
+    const stmt = sql.prepare('INSERT INTO VISITOR (USERNAME, HASH_PASSWORD) VALUES (?, ?)');
+    try {
+        stmt.run(username, password);
+        return { message: 'Registration successful!' };
+    } catch (error) {
+        return error;
+    }
+}
+
 export let getUserByUsername = (username) => {
-    const stmt = sql.prepare('SELECT * FROM USER WHERE USERNAME = ?');
+    const stmt = sql.prepare('SELECT * FROM VISITOR WHERE USERNAME = ?');
     let user;
     try {
         user = stmt.get(username);
