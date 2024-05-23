@@ -81,3 +81,21 @@ export async function artists(req, res) {
         res.send(`Error: ${error}`);
     }
 }
+
+export async function showFavouriteArtistsEvents(req, res) {
+    if (req.session.username) {
+        console.log('Logged in as: ' + req.session.username);
+    } else {
+        console.log('Not logged in');
+        res.render('login', {title: 'Login', message: 'Please log in to view your favourite artists events'});
+    }
+    const events = model.getEventsByFavoriteArtists(req.session.username);
+    for (let i = 0; i < events.length; i++) {
+        events[i].event_artists = model.getArtistsInEvent(events[i].ID);
+    }
+    try{
+        res.render('events', { title: 'Favourite Artists Events', events: events });
+    } catch (error) {
+        res.send(`Error: ${error}`);
+    }
+}

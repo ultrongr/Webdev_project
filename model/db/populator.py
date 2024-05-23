@@ -45,6 +45,14 @@ def add_Participates(artist_id, event_id):
     )
     con.commit()
 
+def add_follows(visitor_id, username):
+    cur.execute(
+        "INSERT INTO Follows (Visitor_username, Artist_id) VALUES (?, ?)",
+        (visitor_id, username),
+    )
+    con.commit()
+
+
 clear_db()
 
 add_artist('1', 'Eminem', 45, 'M', 'Eminem, born Marshall Bruce Mathers III, is an American rapper, songwriter, record producer, record executive, and actor.', 'images/artists/eminem.jpg')
@@ -82,3 +90,6 @@ add_event('2',
 add_Participates('1', '1')
 add_Participates('2', '2')
 
+
+add_follows('papaki', '1')
+add_follows('papaki', '2')

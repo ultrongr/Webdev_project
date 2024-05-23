@@ -19,4 +19,6 @@ router.get('/song-player/:songName', recordCompanyController.songPlayer);
 router.get('/artist/:artistName', recordCompanyController.artist);
 router.get('/artists', recordCompanyController.artists);
 
+router.get('/events', recordCompanyController.showFavouriteArtistsEvents);
+
 export default router;

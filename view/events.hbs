@@ -1,0 +1,32 @@
+<div class="upcoming-events">
+    <h1>Check out the events that your favourite artists participate in!</h1>
+        
+        <ul>
+            {{#each events}}
+            <li>
+                <img src="/{{picture}}" class="event-image">
+                <div class="event-info">
+                    <h3>{{Title}}</h3>
+                    <p>Date: {{Date}}</p>
+                    <p>Location: {{Location}}</p>
+                    <p style="display:inline">Participating artists:</p>
+                    {{#each event_artists}}
+                    <pstyle="display: inline"> {{Name}} </p>
+                    {{/each}}
+
+                </div>
+            </li>
+            {{else}}
+            {{#if artist.Sex}}
+                <h2>{{artist.Name}} is not participating in any events right now.</h2>
+            {{else}}
+                <h2>{{artist.Name}} are not participating in any events right now.</h2>
+            {{/if}}
+            {{/each}}
+            
+
+            <!-- Add more events as needed -->
+        </ul>
+    </h2>
+
+</div>

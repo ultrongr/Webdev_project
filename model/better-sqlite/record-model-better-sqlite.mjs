@@ -164,7 +164,12 @@ export let getEventsByArtistId = (id) => {
 }
 
 export let getEventsByFavoriteArtists = (username) => {
-    const stmt = sql.prepare('SELECT * FROM EVENT WHERE Artist_id IN (SELECT Artist_id FROM Follows WHERE Visitor_username = ?)');
+    const stmt = sql.prepare(`
+    SELECT * FROM EVENT 
+    WHERE ID IN (
+        SELECT Event_id FROM Participates WHERE Artist_id IN (
+            SELECT Artist_id FROM Follows WHERE Visitor_username = ?)
+        )`);
     let events;
     try {
         events = stmt.all(username);
@@ -180,6 +185,17 @@ export let getEventById = (id) => {
     try {
         event = stmt.get(id);
         return event;
+    } catch (error) {
+        return error;
+    }
+}
+
+export let getArtistsInEvent = (id) => {
+    const stmt = sql.prepare('SELECT * FROM ARTIST WHERE ID IN (SELECT Artist_id FROM Participates WHERE Event_id = ?)');
+    let artists;
+    try {
+        artists = stmt.all(id);
+        return artists;
     } catch (error) {
         return error;
     }
