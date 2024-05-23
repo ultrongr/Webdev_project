@@ -34,8 +34,10 @@ export let doRegister = function (req, res) {
         }
         else {
             console.log('Registration successful!');
-            console.log('Redirecting to login page');
-            res.redirect('/login');
+            console.log('Redirecting to home page');
+            req.session.username = req.body.username;
+
+            res.redirect('/');
             
         }
     } catch (error) {
@@ -53,7 +55,7 @@ export let doLogIn = function (req, res) {
         }
 
         if (bcrypt.compareSync(req.body.password, user.Hash_password)) {
-            req.session.username = user.username;
+            req.session.username = user.Username;
             res.redirect('/');
         } else {
             res.render('login', { message: 'Wrong password!' });
@@ -65,5 +67,7 @@ export let doLogIn = function (req, res) {
 }
 
 export let doLogOut = function (req, res) {
+    req.session.destroy();
+    console.log('Logged out!')
     res.redirect('/login');
 }

@@ -14,7 +14,12 @@
             <a href="/artists">Artists</a>
             <a href="events.html">Events</a>
             <a href="/contact">Contact Us</a>
-            <a href="/login" id="login_button">Login</a>
+            {{#if username}}
+                <a href="/logout" id="logout_button">Logout</a>
+                
+            {{else}}
+                <a href="/login" id="login_button">Login</a>
+            {{/if}}
         </div>
         <div class="body-container">
             {{{body}}}

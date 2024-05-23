@@ -23,9 +23,13 @@ app.use(express.static('public'))
 //Γενικά όλα τα μέλη του αντικειμένου res.locals είναι προσβάσιμα στη μηχανή template.
 //(http://expressjs.com/en/api.html#res.locals)
 app.use((req, res, next) => {
-    res.locals.userId = "mitsos";
-    next();
-})
+    if (req.session) {
+        res.locals.username = req.session.username;
+     } else {
+        res.locals.username = undefined;
+     }
+     next();
+});
 
 //Διαδρομές. Αντί να γράψουμε τις διαδρομές μας εδώ, τις φορτώνουμε από ένα άλλο αρχείο
 import routes from './routes/routes.mjs'

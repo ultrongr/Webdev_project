@@ -2,6 +2,12 @@
 const model = await import('../model/better-sqlite/record-model-better-sqlite.mjs');
 
 export async function home(req, res) {
+    console.log('home');
+    if (req.session.username) {
+        console.log('Logged in as: ' + req.session.username);
+    } else {
+        console.log('Not logged in');
+    }
     const artists = model.getAllArtists();    
     try{
         res.render('home', {title: 'Home', artists: artists.slice(0, 4)});

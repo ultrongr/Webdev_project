@@ -55,6 +55,15 @@ body {
     background: #fbb;
 }
 
+.topnav #logout_button {
+    float: right;
+    background: #e33;
+}
+
+.topnav #logout_button:hover {
+    background: #fbb;
+}
+
 /*** 1.0 - Front Page ***/
 .description {
     display: flex;
