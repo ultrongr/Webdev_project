@@ -4,7 +4,14 @@
 </head>
 
 <section class="music-player-section">
-    <hi class="song-name">{{{song}}}</hi>
+    <hi class="song-name">{{{song}}}
+        {{#if isFavourite}}
+            <a class="unfavorite-button" href="/removeFromFavouriteSongs/{{song}}">&#10084;</a> 
+        {{else}}
+            <a class="favorite-button" href="/addToFavouriteSongs/{{song}}">&#10084;</a>
+        {{/if}}
+    </hi>
+    
     <p class="artist-name">{{{artist}}}</p>
 
     <img src="{{image}}" class="cover" alt="">
@@ -28,5 +35,4 @@
     </div>
 
     <script src="/scripts/audio-controls.js"></script>
-
 </section>

@@ -38,8 +38,37 @@ export let getArtistByName = (name) => {
     }
 }
 
-//Users
+export let addArtistToFollowed = (username, artist_id) => {
+    const stmt = sql.prepare('INSERT INTO Follows (Visitor_username, Artist_id) VALUES (?, ?)');
+    try {
+        stmt.run(username, artist_id);
+        return { message: 'Artist added to favourites!' };
+    } catch (error) {
+        return error;
+    }
+}
+export let removeArtistFromFollowed = (username, artist_id) => {
+    const stmt = sql.prepare('DELETE FROM Follows WHERE Visitor_username = ? AND Artist_id = ?');
+    try {
+        stmt.run(username, artist_id);
+        return { message: 'Artist removed from favourites!' };
+    } catch (error) {
+        return error;
+    }
+}
 
+export let followsArtist = (username, artist_id) => {
+    const stmt = sql.prepare('SELECT * FROM Follows WHERE Visitor_username = ? AND Artist_id = ?');
+    try {
+        const artist = stmt.get(username, artist_id);
+        return artist !== undefined;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+
+//Users
 export let registerUser = (username, password) => {
     const stmt = sql.prepare('INSERT INTO VISITOR (USERNAME, HASH_PASSWORD) VALUES (?, ?)');
     try {
@@ -117,7 +146,7 @@ export let getSongsByArtistId = (id) => {
     }
 }
 
-export let getFavoriteSongsByUsername = (username) => {
+export let getFavouriteSongsByUsername = (username) => {
     const stmt = sql.prepare('SELECT * FROM Likes WHERE Visitor_username = ?');
     let songs;
     try {
@@ -128,6 +157,37 @@ export let getFavoriteSongsByUsername = (username) => {
     }
 }
 
+export let addSongToFavourites = (username, song_id) => {
+    const stmt = sql.prepare('INSERT INTO Likes (Visitor_username, Song_id) VALUES (?, ?)');
+    try {
+        stmt.run(username, song_id);
+        return { message: 'Song added to favourites!' };
+    } catch (error) {
+        return error;
+    }
+}
+
+export let removeSongFromFavourites = (username, song_id) => {
+    const stmt = sql.prepare('DELETE FROM Likes WHERE Visitor_username = ? AND Song_id = ?');
+    try {
+        stmt.run(username, song_id);
+        return { message: 'Song removed from favourites!' };
+    } catch (error) {
+        return error;
+    }
+}
+
+export let isSongFavourite = (username, song_id) => {
+    const stmt = sql.prepare('SELECT * FROM Likes WHERE Visitor_username = ? AND Song_id = ?');
+    try {
+        const song = stmt.get(username, song_id);
+        return song !== undefined;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+}
+    
 //Albums
 export let getAlbumsByArtistId = (id) => {
     const stmt = sql.prepare('SELECT * FROM ALBUM WHERE Artist_id = ?');
@@ -163,7 +223,7 @@ export let getEventsByArtistId = (id) => {
     }
 }
 
-export let getEventsByFavoriteArtists = (username) => {
+export let getEventsByFavouriteArtists = (username) => {
     const stmt = sql.prepare(`
     SELECT * FROM EVENT 
     WHERE ID IN (

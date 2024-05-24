@@ -1,7 +1,13 @@
 <div class="bio-section">
     <img src="/{{artist.picture}}" style="height: 200px; width: auto;" class="artist-image">
     <div class="artist-info">
-        <h1>{{artist.Name}}<button class="favorite-button">&#10084;</button></h1>
+        <h1>{{artist.Name}}
+            {{#if follows}}
+                <a class="unfavorite-button" href="/removeFromFollowedArtists/{{artist.Name}}">&#10084;</a>
+            {{else}}
+                <a class="favorite-button" href="/addToFollowedArtists/{{artist.Name}}">&#10084;</a>
+            {{/if}}
+        </h1>
         
         <p>{{artist.Bio}}</p>
     </div>
@@ -47,12 +53,6 @@
                 <h2>{{artist.Name}} are not participating in any events right now.</h2>
             {{/if}}
             {{/each}}
-            
-
-            <!-- Add more events as needed -->
         </ul>
     </h2>
-
 </div>
-
-

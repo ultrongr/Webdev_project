@@ -46,23 +46,19 @@ body {
     color: black;
 }
 
-.topnav #login_button {
+.topnav #login-button {
     float: right;
     background: #e33;
 }
 
-.topnav #login_button:hover {
+.topnav #login-button:hover {
     background: #fbb;
 }
 
-.topnav #logout_button {
+.topnav #profile-button {
     float: right;
-    background: #e33;
 }
 
-.topnav #logout_button:hover {
-    background: #fbb;
-}
 
 /*** 1.0 - Front Page ***/
 .description {
@@ -261,6 +257,20 @@ textarea {
     margin-left: 10px;
     padding: 0;
     font-size: 1em;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: gray;
+    border: none;
+    border-radius: 0.5em;
+    transition: background-color 0.3s;
+}
+
+.unfavorite-button {
+    margin-left: 10px;
+    padding: 0;
+    font-size: 1em;
+    text-decoration: none;
     cursor: pointer;
     background-color: transparent;
     color: red;

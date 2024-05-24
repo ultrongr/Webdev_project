@@ -4,8 +4,9 @@ import * as userModel from '../model/better-sqlite/record-model-better-sqlite.mj
 
 
 export let showLogInForm = function (req, res) {
-    res.render('login', {title: 'Login'});
+    res.render('login', {title: 'Login', message: req.params.message});
 }
+
 
 export let showRegisterForm = function (req, res) {
     res.render('register', {title: 'Register'});
@@ -36,9 +37,7 @@ export let doRegister = function (req, res) {
             console.log('Registration successful!');
             console.log('Redirecting to home page');
             req.session.username = req.body.username;
-
             res.redirect('/');
-            
         }
     } catch (error) {
         console.error('registration error: ' + error);

@@ -1,3 +1,4 @@
+import { addSongToFavourites } from '../model/better-sqlite/record-model-better-sqlite.mjs';
 
 const model = await import('../model/better-sqlite/record-model-better-sqlite.mjs');
 
@@ -10,7 +11,7 @@ export async function home(req, res) {
     }
     const artists = model.getAllArtists();    
     try{
-        res.render('home', {title: 'Home', artists: artists.slice(0, 4)});
+        res.render('home', {title: 'Home', artists: artists.slice(0, 4), username: req.session.username});
     } catch (error) {
         res.send(`Error: ${error}`);
     }
@@ -51,8 +52,9 @@ export async function songPlayer(req, res) {
         res.send('Error (404): Song artist not found');
         return;
     }
+    const isFavourite = model.isSongFavourite(req.session.username, song.ID);
     try{
-        res.render('song-player', { song: song.Name, artist: artist.Name, image: song.picture, audio: song.YT_link });
+        res.render('song-player', { song: song.Name, artist: artist.Name, image: song.picture, audio: song.YT_link, isFavourite: isFavourite });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
@@ -66,8 +68,9 @@ export async function artist(req, res) {
     }
     const songs = model.getSongsByArtistId(artist.ID);
     const events = model.getEventsByArtistId(artist.ID);
+    const follows = model.followsArtist(req.session.username, artist.ID);
     try{
-        res.render('artist', { artist: artist, songs: songs, events: events });
+        res.render('artist', { artist: artist, songs: songs, events: events, follows: follows });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
@@ -87,14 +90,98 @@ export async function showFavouriteArtistsEvents(req, res) {
         console.log('Logged in as: ' + req.session.username);
     } else {
         console.log('Not logged in');
-        res.render('login', {title: 'Login', message: 'Please log in to view your favourite artists events'});
+        res.redirect('/login/Please log in to view your favourite artists events');
+        return;
     }
-    const events = model.getEventsByFavoriteArtists(req.session.username);
+    const events = model.getEventsByFavouriteArtists(req.session.username);
     for (let i = 0; i < events.length; i++) {
         events[i].event_artists = model.getArtistsInEvent(events[i].ID);
     }
     try{
         res.render('events', { title: 'Favourite Artists Events', events: events });
+    } catch (error) {
+        res.send(`Error: ${error}`);
+    }
+}
+
+export async function addToFavouriteSongs(req, res) {
+    if (req.session.username) {
+        console.log('Logged in as: ' + req.session.username);
+    } else {
+        console.log('Not logged in');
+        res.redirect('/login/Please log in to add songs to your favourites');
+        return;
+    }
+    const song = model.getSongByName(req.params.songName);
+    if (song === undefined) {
+        res.send('Error (404): Song not found');
+        return;
+    }
+    const result = model.addSongToFavourites(req.session.username, song.ID);
+    try{
+        res.redirect('/song-player/' + song.Name);
+    } catch (error) {
+        res.send(`Error: ${error}`);
+    }
+}
+
+export async function removeFromFavouriteSongs(req, res) {
+    if (req.session.username) {
+        console.log('Logged in as: ' + req.session.username);
+    } else {
+        console.log('Not logged in');
+        res.redirect('/login/Please log in to remove songs from your favourites');
+        return;
+    }
+    const song = model.getSongByName(req.params.songName);
+    if (song === undefined) {
+        res.send('Error (404): Song not found');
+        return;
+    }
+    const result = model.removeSongFromFavourites(req.session.username, song.ID);
+    try{
+        res.redirect('/song-player/' + song.Name);
+    } catch (error) {
+        res.send(`Error: ${error}`);
+    }
+}
+export async function addToFollowedArtists(req, res) {
+    if (req.session.username) {
+        console.log('Logged in as: ' + req.session.username);
+    } else {
+        console.log('Not logged in');
+        res.redirect('/login/Please log in to add artists to your favourites');
+        return;
+    }
+    const artist = model.getArtistByName(req.params.artistName);
+    if (artist === undefined) {
+        res.send('Error (404): Artist not found');
+        return;
+    }
+    const result = model.addArtistToFollowed(req.session.username, artist.ID);
+    try{
+        res.redirect('/artist/' + artist.Name);
+    } catch (error) {
+        res.send(`Error: ${error}`);
+    }
+}
+
+export async function removeFromFollowedArtists(req, res) {
+    if (req.session.username) {
+        console.log('Logged in as: ' + req.session.username);
+    } else {
+        console.log('Not logged in');
+        res.redirect('/login/Please log in to remove artists from your favourites');
+        return;
+    }
+    const artist = model.getArtistByName(req.params.artistName);
+    if (artist === undefined) {
+        res.send('Error (404): Artist not found');
+        return;
+    }
+    const result = model.removeArtistFromFollowed(req.session.username, artist.ID);
+    try{
+        res.redirect('/artist/' + artist.Name);
     } catch (error) {
         res.send(`Error: ${error}`);
     }
