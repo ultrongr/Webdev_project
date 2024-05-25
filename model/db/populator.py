@@ -98,6 +98,12 @@ add_to_database(eminem, eminem_albums, eminem_songs)
 from pinkfloyd import *
 add_to_database(pinkfloyd, pinkfloyd_albums, pinkfloyd_songs)
 
+from taylorswift import *
+add_to_database(taylorswift, taylorswift_albums, taylorswift_songs)
+
+from thebeatles import *
+add_to_database(thebeatles, thebeatles_albums, thebeatles_songs)
+
 
 add_event('1', 
         '2024-07-12',

@@ -26,14 +26,24 @@
                     <br>
                 </li>
             {{/each}}
-        {{else}}
-        {{#if artist.Sex}}
-            <h2>{{artist.Name}} hasn't released any songs yet.</h2>
-        {{else}}
-            <h2>{{artist.Name}} haven't released any songs yet.</h2>
-        {{/if}}
+        {{/each}}
+        {{#each singles}}
+         <h2 class="album-title">Singles</h2>
+            <li class="song">
+                <a href="../../song-player/{{Name}}"> 
+                <img src="{{picture}}" alt="{{Name}}"></a>
+                <p>{{Name}}              </p>
+                <br>
+            </li>
         {{/each}}
 
+        {{#if hasntReleased}}
+            {{#if artist.Sex}}
+                <h2>{{artist.Name}} hasn't released any songs yet.</h2>
+            {{else}}
+                <h2>{{artist.Name}} haven't released any songs yet.</h2>
+            {{/if}}
+        {{/if}}
     </ul>
 </div>
 

@@ -5,7 +5,7 @@ pinkfloyd_albums = [
     ['Pink Floyd', 'The Wall'],
 ]
 
-pinkfloyd_songs = [
+the_dark_side_of_the_moon_songs = [
     ["Speak to Me", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
     ["Breathe (In the Air)", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
     ["On the Run", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
@@ -16,7 +16,8 @@ pinkfloyd_songs = [
     ["Any Colour You Like", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
     ["Brain Damage", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
     ["Eclipse", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
-    
+]
+the_wall_songs = [
     ["In the Flesh?", 'Pink Floyd', 'The Wall', 18, '1979-11-30', None],
     ["The Thin Ice", 'Pink Floyd', 'The Wall', 18, '1979-11-30', None],
     ["Another Brick in the Wall, Part 1", 'Pink Floyd', 'The Wall', 18, '1979-11-30', None],
@@ -44,3 +45,5 @@ pinkfloyd_songs = [
     ["The Trial", 'Pink Floyd', 'The Wall', 18, '1979-11-30', None],
     ["Outside the Wall", 'Pink Floyd', 'The Wall', 18, '1979-11-30', None]
 ]
+
+pinkfloyd_songs = the_dark_side_of_the_moon_songs + the_wall_songs

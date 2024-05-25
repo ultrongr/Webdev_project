@@ -5,7 +5,7 @@ eminem_albums = [
     ['Eminem', 'The Eminem Show'],
 ]
 
-eminem_songs = [
+the_marshall_mathers_lp_songs = [
     ["Public Service Announcement 2000", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
     ["Kill You", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
     ["Stan", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
@@ -24,7 +24,8 @@ eminem_songs = [
     ["Kim", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
     ["Under the Influence", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
     ["Criminal", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
-    
+]
+the_eminem_show_songs = [
     ["Curtains Up (Skit)", 'Eminem', 'The Eminem Show', 18, '2002-05-26', None],
     ["White America", 'Eminem', 'The Eminem Show', 18, '2002-05-26', None],
     ["Business", 'Eminem', 'The Eminem Show', 18, '2002-05-26', None],
@@ -46,3 +47,5 @@ eminem_songs = [
     ["My Dad's Gone Crazy", 'Eminem', 'The Eminem Show', 18, '2002-05-26', None],
     ["Curtains Close (Skit)", 'Eminem', 'The Eminem Show', 18, '2002-05-26', None]
 ]
+
+eminem_songs = the_marshall_mathers_lp_songs + the_eminem_show_songs

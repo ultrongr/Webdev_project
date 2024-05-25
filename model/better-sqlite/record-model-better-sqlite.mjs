@@ -199,6 +199,17 @@ export let isSongFavourite = (username, song_id) => {
         return false;
     }
 }
+
+export let getSingles = () => {
+    const stmt = sql.prepare('SELECT * FROM SONG WHERE Album_id IS NULL');
+    let songs;
+    try {
+        songs = stmt.all();
+        return songs;
+    } catch (error) {
+        return error;
+    }
+}
     
 //Albums
 export let getAlbumsByArtistId = (id) => {

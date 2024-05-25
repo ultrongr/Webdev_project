@@ -9,33 +9,33 @@ export async function home(req, res) {
     } else {
         console.log('Not logged in');
     }
-    const artists = model.getAllArtists();    
-    try{
-        res.render('home', {title: 'Home', artists: artists.slice(0, 4), username: req.session.username});
+    const artists = model.getAllArtists();
+    try {
+        res.render('home', { title: 'Home', artists: artists.slice(0, 4), username: req.session.username });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
 }
 
 export async function contact(req, res) {
-    try{
-        res.render('contact', {title: 'Contact'});
+    try {
+        res.render('contact', { title: 'Contact' });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
 }
 
 export async function login(req, res) {
-    try{
-        res.render('login', {title: 'Login', message: '⚠ hey'});
+    try {
+        res.render('login', { title: 'Login', message: '⚠ hey' });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
 }
 
 export async function register(req, res) {
-    try{
-        res.render('register', {title: 'Register'});
+    try {
+        res.render('register', { title: 'Register' });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
@@ -53,7 +53,7 @@ export async function songPlayer(req, res) {
         return;
     }
     const isFavourite = model.isSongFavourite(req.session.username, song.ID);
-    try{
+    try {
         res.render('song-player', { song: song.Name, artist: artist.Name, image: song.picture, audio: song.Audio_path, isFavourite: isFavourite });
     } catch (error) {
         res.send(`Error: ${error}`);
@@ -72,12 +72,17 @@ export async function artist(req, res) {
         album.songs = model.getSongsByAlbumId(album.ID);
         return album;
     });
-
+    const singles = model.getSingles();
     const events = model.getEventsByArtistId(artist.ID);
     const follows = model.followsArtist(req.session.username, artist.ID);
-    
-    try{
-        res.render('artist', { artist: artist, albums: albumsWithSongs, events: events, follows: follows });
+
+    const hasntReleased = albumsWithSongs.length === 0 && singles.length === 0;
+
+    try {
+        res.render('artist', {
+            artist: artist, albums: albumsWithSongs, singles: singles,
+            hasntReleased: hasntReleased, events: events, follows: follows
+        });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
@@ -85,7 +90,7 @@ export async function artist(req, res) {
 
 export async function artists(req, res) {
     const artists = model.getAllArtists();
-    try{
+    try {
         res.render('all-artists', { artists: artists });
     } catch (error) {
         res.send(`Error: ${error}`);
@@ -97,14 +102,14 @@ export async function showFavouriteArtistsEvents(req, res) {
         console.log('Logged in as: ' + req.session.username);
     } else {
         console.log('Not logged in');
-        res.redirect('/login/Please log in to view your favourite artists events');
+        res.redirect('/login/Please log in to view your favourite artists upcoming events');
         return;
     }
     const events = model.getEventsByFavouriteArtists(req.session.username);
     for (let i = 0; i < events.length; i++) {
         events[i].event_artists = model.getArtistsInEvent(events[i].ID);
     }
-    try{
+    try {
         res.render('events', { title: 'Favourite Artists Events', events: events });
     } catch (error) {
         res.send(`Error: ${error}`);
@@ -125,7 +130,7 @@ export async function addToFavouriteSongs(req, res) {
         return;
     }
     const result = model.addSongToFavourites(req.session.username, song.ID);
-    try{
+    try {
         res.redirect('/song-player/' + song.Name);
     } catch (error) {
         res.send(`Error: ${error}`);
@@ -146,7 +151,7 @@ export async function removeFromFavouriteSongs(req, res) {
         return;
     }
     const result = model.removeSongFromFavourites(req.session.username, song.ID);
-    try{
+    try {
         res.redirect('/song-player/' + song.Name);
     } catch (error) {
         res.send(`Error: ${error}`);
@@ -166,7 +171,7 @@ export async function addToFollowedArtists(req, res) {
         return;
     }
     const result = model.addArtistToFollowed(req.session.username, artist.ID);
-    try{
+    try {
         res.redirect('/artist/' + artist.Name);
     } catch (error) {
         res.send(`Error: ${error}`);
@@ -187,7 +192,7 @@ export async function removeFromFollowedArtists(req, res) {
         return;
     }
     const result = model.removeArtistFromFollowed(req.session.username, artist.ID);
-    try{
+    try {
         res.redirect('/artist/' + artist.Name);
     } catch (error) {
         res.send(`Error: ${error}`);
@@ -215,7 +220,7 @@ export async function profile(req, res) {
     }
     console.log(followedArtists)
     console.log(favouriteSongs)
-    try{
+    try {
         res.render('profile', { title: 'Profile', username: req.session.username, artists: followedArtists, songs: favouriteSongs });
     } catch (error) {
         res.send(`Error: ${error}`);
