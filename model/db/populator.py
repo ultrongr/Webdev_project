@@ -66,7 +66,7 @@ add_artist('7', 'King Crimson', None, None, 'King Crimson are an English progres
 add_album('1', '2', 'The Dark Side of the Moon')
 add_album('2', '2', 'Wish You Were Here')
 
-add_song('1', 'Speak to Me', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/01 Speak to Me_Breathe.mp3', '/albums/The Dark Side of the Moon/cover.png')
+add_song('1', 'Speak to Me', '2', '1', 18, '1973-03-01', None, '/albums/The Dark Side of the Moon/cover.png')
 add_song('2', 'On the Run', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/02 On the Run.mp3', '/albums/The Dark Side of the Moon/cover.png')
 add_song('3', 'Time', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/03 Time.mp3', '/albums/The Dark Side of the Moon/cover.png')
 add_song('4', 'The Great Gig in the Sky', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/04 The Great Gig in the Sky.mp3', '/albums/The Dark Side of the Moon/cover.png')

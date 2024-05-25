@@ -16,23 +16,27 @@
 
     <img src="{{image}}" class="cover" alt="">
 
-    <audio src="{{{audio}}}" id="audio-player"></audio>
+    {{#if audio}}
+        <audio src="{{{audio}}}" id="audio-player"></audio>
 
-    <div class="seek-bar">
-        <input type="range" min="0" max="100" value="0" class="seek-bar" id="seek-bar">
-        <div class="time">
-            <p id="current-time">0:00</p>
-            <p id="duration">0:00</p>
+        <div class="seek-bar">
+            <input type="range" min="0" max="100" value="0" class="seek-bar" id="seek-bar">
+            <div class="time">
+                <p id="current-time">0:00</p>
+                <p id="duration">0:00</p>
+            </div>
         </div>
-    </div>
 
-    <div class="controls">
-        <span class="material-symbols-outlined md-48" id="seek-backward">fast_rewind</span>
-        <span class="material-symbols-outlined md-48" id="play">play_arrow</span>
-        <span class="material-symbols-outlined md-48" id="pause" style="display: none;">pause</span>
-        <span class="material-symbols-outlined md-48" id="stop">stop</span>
-        <span class="material-symbols-outlined md-48" id="seek-forward">fast_forward</span>
-    </div>
+        <div class="controls">
+            <span class="material-symbols-outlined md-48" id="seek-backward">fast_rewind</span>
+            <span class="material-symbols-outlined md-48" id="play">play_arrow</span>
+            <span class="material-symbols-outlined md-48" id="pause" style="display: none;">pause</span>
+            <span class="material-symbols-outlined md-48" id="stop">stop</span>
+            <span class="material-symbols-outlined md-48" id="seek-forward">fast_forward</span>
+        </div>
 
-    <script src="/scripts/audio-controls.js"></script>
+        <script src="/scripts/audio-controls.js"></script>
+    {{else}}
+        <p class="artist-name">This song is not available yet.</p>
+    {{/if}}
 </section>
