@@ -39,11 +39,10 @@ def add_album(artist, name):
     con.commit()
     
 def add_song(name, artist, album, pg, release_date, song_file):
-    _id = myhash(name + album)
+    _id = myhash(name + album if album is not None else name)
     artist_id = get_artist_id(artist)
-    album_id = get_album_id(artist_id, album)
-    
-    picture = f'/albums/{album}/{album}.jpg'
+    album_id = get_album_id(artist_id, album) if album is not None else None
+    picture = f'/albums/{album}/{album}.jpg' if album is not None else f'/images/artists/{artist}.jpg'.replace(' ', '')
     
     cur.execute(
         "INSERT INTO SONG (ID, Name, Artist_id, Album_id, PG, Release_date, Audio_path, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
@@ -104,6 +103,11 @@ add_to_database(taylorswift, taylorswift_albums, taylorswift_songs)
 from thebeatles import *
 add_to_database(thebeatles, thebeatles_albums, thebeatles_songs)
 
+from beethoven import *
+add_to_database(beethoven, beethoven_albums, beethoven_songs)
+
+from bobmarley import *
+add_to_database(bobmarley, bobmarley_albums, bobmarley_songs)
 
 add_event('1', 
         '2024-07-12',

@@ -53,8 +53,9 @@ export async function songPlayer(req, res) {
         return;
     }
     const isFavourite = model.isSongFavourite(req.session.username, song.ID);
+    const totalLikes = model.getTotalLikesBySongId(song.ID);
     try {
-        res.render('song-player', { song: song.Name, artist: artist.Name, image: song.picture, audio: song.Audio_path, isFavourite: isFavourite });
+        res.render('song-player', { song: song.Name, artist: artist.Name, image: song.picture, audio: song.Audio_path, isFavourite: isFavourite, totalLikes: totalLikes });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
@@ -72,16 +73,18 @@ export async function artist(req, res) {
         album.songs = model.getSongsByAlbumId(album.ID);
         return album;
     });
-    const singles = model.getSingles();
+    const singles = model.getArtistsSingles(artist.ID);
     const events = model.getEventsByArtistId(artist.ID);
     const follows = model.followsArtist(req.session.username, artist.ID);
 
     const hasntReleased = albumsWithSongs.length === 0 && singles.length === 0;
 
+    const totalFollows = model.getNumberFollowsByArtistId(artist.ID);
+
     try {
         res.render('artist', {
             artist: artist, albums: albumsWithSongs, singles: singles,
-            hasntReleased: hasntReleased, events: events, follows: follows
+            hasntReleased: hasntReleased, events: events, follows: follows, totalFollows: totalFollows
         });
     } catch (error) {
         res.send(`Error: ${error}`);

@@ -68,6 +68,17 @@ export let followsArtist = (username, artist_id) => {
     }
 }
 
+export let getNumberFollowsByArtistId = (artist_id) => {
+    const stmt = sql.prepare('SELECT COUNT(*) FROM Follows WHERE Artist_id = ?');
+    let count;
+    try {
+        count = stmt.get(artist_id);
+        return count['COUNT(*)'];
+    } catch (error) {
+        return error;
+    }
+}
+
 //Users
 export let registerUser = (username, password) => {
     const stmt = sql.prepare('INSERT INTO VISITOR (USERNAME, HASH_PASSWORD) VALUES (?, ?)');
@@ -200,11 +211,22 @@ export let isSongFavourite = (username, song_id) => {
     }
 }
 
-export let getSingles = () => {
-    const stmt = sql.prepare('SELECT * FROM SONG WHERE Album_id IS NULL');
+export let getTotalLikesBySongId = (song_id) => {
+    const stmt = sql.prepare('SELECT COUNT(*) FROM Likes WHERE Song_id = ?');
+    let count;
+    try {
+        count = stmt.get(song_id);
+        return count['COUNT(*)'];
+    } catch (error) {
+        return error;
+    }
+}
+
+export let getArtistsSingles = (artist_id) => {
+    const stmt = sql.prepare('SELECT * FROM SONG WHERE Album_id IS NULL and Artist_id = ?');
     let songs;
     try {
-        songs = stmt.all();
+        songs = stmt.all(artist_id);
         return songs;
     } catch (error) {
         return error;

@@ -7,7 +7,8 @@
             {{else}}
                 <a class="favorite-button" href="/addToFollowedArtists/{{artist.Name}}">&#10084;</a>
             {{/if}}
-        </h1>
+            <p class="follower-count">({{totalFollows}})</p>
+        </h1> 
         
         <p>{{artist.Bio}}</p>
     </div>
@@ -27,8 +28,10 @@
                 </li>
             {{/each}}
         {{/each}}
+        {{#if singles}}
+        <h2 class="album-title">Singles</h2>
+        {{/if}}
         {{#each singles}}
-         <h2 class="album-title">Singles</h2>
             <li class="song">
                 <a href="../../song-player/{{Name}}"> 
                 <img src="{{picture}}" alt="{{Name}}"></a>

@@ -4,13 +4,14 @@
 </head>
 
 <section class="music-player-section">
-    <hi class="song-name">{{{song}}}
+    <h1 class="song-name" style="display: flex; justify-content: center;">{{song}}
         {{#if isFavourite}}
             <a class="unfavorite-button" href="/removeFromFavouriteSongs/{{song}}">&#10084;</a> 
         {{else}}
             <a class="favorite-button" href="/addToFavouriteSongs/{{song}}">&#10084;</a>
         {{/if}}
-    </hi>
+        <p class="follower-count">({{totalLikes}})</p>
+    </h1>
     
     <p class="artist-name">{{{artist}}}</p>
 
