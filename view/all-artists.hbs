@@ -1,11 +1,19 @@
-<div class="artist-section">
-    <h1 class="header">Our Talents</h1>
-    <div class="all-artists-container">
-        {{#each artists}}
-        <div class="artist"
-            style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url({{picture}});">
-            <a href="/artist/{{Name}}">{{Name}}</a>
+<head>
+    <!-- Preload the images -->
+    {{#each artists}}
+    <link rel="preload" href="{{picture}}" as="image">
+    {{/each}}
+</head>
+<body>
+    <div class="artist-section">
+        <h1 class="header">Our Talents</h1>
+        <div class="all-artists-container">
+            {{#each artists}}
+            <div class="artist"
+                style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url({{picture}});">
+                <a href="/artist/{{Name}}">{{Name}}</a>
+            </div>
+            {{/each}}
         </div>
-        {{/each}}
     </div>
-</div>
+</body>
