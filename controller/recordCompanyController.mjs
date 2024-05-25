@@ -66,11 +66,18 @@ export async function artist(req, res) {
         res.send('Artist not found');
         return;
     }
-    const songs = model.getSongsByArtistId(artist.ID);
+    const albums = model.getAlbumsByArtistId(artist.ID);
+
+    const albumsWithSongs = albums.map(album => {
+        album.songs = model.getSongsByAlbumId(album.ID);
+        return album;
+    });
+
     const events = model.getEventsByArtistId(artist.ID);
     const follows = model.followsArtist(req.session.username, artist.ID);
+    
     try{
-        res.render('artist', { artist: artist, songs: songs, events: events, follows: follows });
+        res.render('artist', { artist: artist, albums: albumsWithSongs, events: events, follows: follows });
     } catch (error) {
         res.send(`Error: ${error}`);
     }

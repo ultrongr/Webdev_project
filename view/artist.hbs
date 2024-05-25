@@ -1,5 +1,5 @@
 <div class="bio-section">
-    <img src="/{{artist.picture}}" style="height: 200px; width: auto;" class="artist-image">
+    <img src="{{artist.picture}}" style="height: 200px; width: auto;" class="artist-image">
     <div class="artist-info">
         <h1>{{artist.Name}}
             {{#if follows}}
@@ -16,13 +16,16 @@
 <div class="songs-list">
     <h1>Songs by {{artist.Name}}</h1>
     <ul>
-        {{#each songs}}
-        <li class="song">
-            <a href="../../song-player/{{Name}}"> 
-            <img src="{{picture}}" alt="{{Name}}"></a>
-            <p>{{Name}}              </p>
-            <br>
-        </li>
+        {{#each albums}}
+            <h2 class="album-title">{{Name}}</h2>
+            {{#each songs}}
+                <li class="song">
+                    <a href="../../song-player/{{Name}}"> 
+                    <img src="{{picture}}" alt="{{Name}}"></a>
+                    <p>{{Name}}              </p>
+                    <br>
+                </li>
+            {{/each}}
         {{else}}
         {{#if artist.Sex}}
             <h2>{{artist.Name}} hasn't released any songs yet.</h2>

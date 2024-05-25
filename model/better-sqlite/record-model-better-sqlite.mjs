@@ -147,6 +147,17 @@ export let getSongsByArtistId = (id) => {
     }
 }
 
+export let getSongsByAlbumId = (id) => {
+    const stmt = sql.prepare('SELECT * FROM SONG WHERE Album_id = ?');
+    let songs;
+    try {
+        songs = stmt.all(id);
+        return songs;
+    } catch (error) {
+        return error;
+    }
+}
+
 export let getFavouriteSongsByUsername = (username) => {
     const stmt = sql.prepare('SELECT * FROM SONG WHERE ID IN (SELECT Song_id FROM Likes WHERE Visitor_username = ?)');
     let songs;

@@ -3,6 +3,8 @@ import sqlite3
 con = sqlite3.connect('database.db')
 cur = con.cursor()
 
+def myhash(s):
+    return hash(s) % 10**7
 
 def clear_db():
     tables = ['ARTIST', 'ALBUM', 'SONG', 'EVENT', 'VISITOR', 'Follows', 'Likes', 'Participates']
@@ -10,21 +12,39 @@ def clear_db():
         cur.execute(f"DELETE FROM {table}")
         con.commit()
 
+def get_artist_id(artist_name):
+    cur.execute("SELECT ID FROM ARTIST WHERE Name = ?", (artist_name,))
+    return cur.fetchone()[0]
 
-def add_artist(_id, name, age, sex, bio, picture):
+def get_album_id(artist_id, album_name):
+    cur.execute("SELECT ID FROM ALBUM WHERE Artist_id = ? AND Name = ?", (artist_id, album_name))
+    return cur.fetchone()[0]
+
+def add_artist(name, age, sex, bio):
+    _id = myhash(name)
+    picture = f'/images/artists/{name}.jpg'.replace(' ', '')
     
     cur.execute("INSERT INTO ARTIST (ID, Name, Age, Sex, Bio, picture) VALUES (?, ?, ?, ?, ?, ?)", 
                 (_id, name, age, sex, bio, picture))
     con.commit()
 
-def add_album(_id, artist_id, name):
+def add_album(artist, name):
+    _id = myhash(name + artist)
+    artist_id = get_artist_id(artist)
+    
     cur.execute(
         "INSERT INTO ALBUM (ID, Artist_id, Name) VALUES (?, ?, ?)",
         (_id, artist_id, name),
     )
     con.commit()
     
-def add_song(_id, name, artist_id, album_id, pg, release_date, song_file, picture):
+def add_song(name, artist, album, pg, release_date, song_file):
+    _id = myhash(name + album)
+    artist_id = get_artist_id(artist)
+    album_id = get_album_id(artist_id, album)
+    
+    picture = f'/albums/{album}/{album}.jpg'
+    
     cur.execute(
         "INSERT INTO SONG (ID, Name, Artist_id, Album_id, PG, Release_date, Audio_path, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
         (_id, name, artist_id, album_id, pg, release_date, song_file, picture),
@@ -52,24 +72,32 @@ def add_follows(visitor_id, username):
     )
     con.commit()
 
+def add_to_database(artist, albums, songs):
+    add_artist(*artist)
+    for album in albums:
+        add_album(*album)
+    for song in songs:
+        add_song(*song)
 
 clear_db()
 
-add_artist('1', 'Eminem', 45, 'M', 'Eminem, born Marshall Bruce Mathers III, is an American rapper, songwriter, record producer, record executive, and actor.', 'images/artists/eminem.jpg')
-add_artist('2', 'Pink Floyd', None, None, 'Pink Floyd were an English rock band formed in London in 1965. They achieved international acclaim with their progressive and psychedelic music.', 'images/artists/PinkFloyd.jpg')
-add_artist('3', 'Rihanna', 30, 'F', 'Robyn Rihanna Fenty is a Barbadian singer, songwriter, actress, and businesswoman.', 'images/artists/rihanna.jpg')
-add_artist('4', 'The Beatles', None, None, 'The Beatles were an English rock band formed in Liverpool in 1960. With members John Lennon, Paul McCartney, George Harrison and Ringo Starr.', 'images/artists/thebeatles.jpg')
-add_artist('5', 'Imagine Dragons', None, None, 'Imagine Dragons is an American pop rock band from Las Vegas, Nevada, consisting of lead vocalist Dan Reynolds, lead guitarist Wayne Sermon, bassist Ben McKee, and drummer Daniel Platzman.', 'images/artists/imagine_dragons.jpg')
-add_artist('6', 'Taylor Swift', 28, 'F', 'Taylor Alison Swift is an American singer-songwriter. Her narrative songwriting, which often centers around her personal life, has received widespread critical plaudits and media coverage.', 'images/artists/taylor_swift.jpg')
-add_artist('7', 'King Crimson', None, None, 'King Crimson are an English progressive rock band formed in London in 1968. They have been influential both on the early 1970s progressive rock movement and numerous contemporary artists.', 'images/artists/king_crimson.png')
+# artists = [
+#     ['Rihanna', 30, 'F', 'Robyn Rihanna Fenty is a Barbadian singer, songwriter, actress, and businesswoman.', 'images/artists/rihanna.jpg'],
+#     ['The Beatles', None, None, 'The Beatles were an English rock band formed in Liverpool in 1960. With members John Lennon, Paul McCartney, George Harrison and Ringo Starr.', 'images/artists/thebeatles.jpg'],
+#     ['Imagine Dragons', None, None, 'Imagine Dragons is an American pop rock band from Las Vegas, Nevada, consisting of lead vocalist Dan Reynolds, lead guitarist Wayne Sermon, bassist Ben McKee, and drummer Daniel Platzman.', 'images/artists/imagine_dragons.jpg'],
+#     ['Taylor Swift', 28, 'F', 'Taylor Alison Swift is an American singer-songwriter. Her narrative songwriting, which often centers around her personal life, has received widespread critical plaudits and media coverage.', 'images/artists/taylor_swift.jpg'],
+#     ['King Crimson', None, None, 'King Crimson are an English progressive rock band formed in London in 1968. They have been influential both on the early 1970s progressive rock movement and numerous contemporary artists.', 'images/artists/king_crimson.png']
+# ]
 
-add_album('1', '2', 'The Dark Side of the Moon')
-add_album('2', '2', 'Wish You Were Here')
+# for artist in artists:
+#     add_artist(*artist)
 
-add_song('1', 'Speak to Me', '2', '1', 18, '1973-03-01', None, '/albums/The Dark Side of the Moon/cover.png')
-add_song('2', 'On the Run', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/02 On the Run.mp3', '/albums/The Dark Side of the Moon/cover.png')
-add_song('3', 'Time', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/03 Time.mp3', '/albums/The Dark Side of the Moon/cover.png')
-add_song('4', 'The Great Gig in the Sky', '2', '1', 18, '1973-03-01', '/albums/The Dark Side of the Moon/04 The Great Gig in the Sky.mp3', '/albums/The Dark Side of the Moon/cover.png')
+from eminem import *
+add_to_database(eminem, eminem_albums, eminem_songs)
+
+from pinkfloyd import *
+add_to_database(pinkfloyd, pinkfloyd_albums, pinkfloyd_songs)
+
 
 add_event('1', 
         '2024-07-12',
