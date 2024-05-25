@@ -16,7 +16,7 @@
             <li>
                 <img src="/{{picture}}" class="favorite-artist-image">
                 <div class="favorite-artist-info">
-                    <h2><a href="artist/{{Name}}">{{Name}}</a></h2>
+                    <h2><a href="artist/{{Name}}" style="color: #444444;">{{Name}}</a></h2>
                 </div>
             </li>
             {{else}}
@@ -32,8 +32,8 @@
             <li>
                 <img src="{{picture}}" class="favorite-song-image">
                 <div class="favorite-song-info">
-                    <h2><a href="/song-player/{{Name}}">{{Name}}</a></h2>
-                    <h3>By: {{artist.Name}}</h3>
+                    <h2><a href="/song-player/{{Name}}" style="color: #444444;">{{Name}}</a></h2>
+                    <h3 style="color: #444444;">By: {{artist.Name}}</h3>
                 </div>
             </li>
             {{else}}

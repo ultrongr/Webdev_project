@@ -535,6 +535,13 @@ footer p {
     margin-right: 20px;
 }
 
+.profile-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 30px;
+}
+
 .logout.button {
     background-color: #e33;
     color: white;
@@ -542,8 +549,9 @@ footer p {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.5em;
     transition: background-color 0.3s;
+    height: 50px;
 }
 
 .logout.button:hover {
@@ -569,27 +577,33 @@ footer p {
 }
 
 .favorite-artists li, .favorite-songs li {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(100, 100, 100, 0.01);
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
     width: calc(33% - 20px);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: left;
 }
 
 .favorite-artist-image, .favorite-song-image {
-    width: 80px;
-    height: 80px;
+    height: 120px;
+    width: auto;
+    
     margin-right: 15px;
     border-radius: 10px;
     object-fit: cover;
 }
 
-.favorite-artist-info h3, .song-info h3 {
-    font-size: 1.2em;
+.favorite-artist-info, .song-info {
+    color: white;
+}
+
+.favorite-artist-info h2, .song-info h2 {
+    font-size: 2em;
     margin: 0;
 }
 
