@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS "SONG" (
 	"Album_id" string,
 	"PG" integer,
 	"Release_date" datetime,
-	"YT_link" string,
+	"audio_path" string,
 	"picture" string,
 	PRIMARY KEY ("ID"),
 	FOREIGN KEY ("Artist_id") REFERENCES "ARTIST" ("ID")

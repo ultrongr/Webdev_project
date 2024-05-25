@@ -26,7 +26,7 @@ def add_album(_id, artist_id, name):
     
 def add_song(_id, name, artist_id, album_id, pg, release_date, song_file, picture):
     cur.execute(
-        "INSERT INTO SONG (ID, Name, Artist_id, Album_id, PG, Release_date, YT_link, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO SONG (ID, Name, Artist_id, Album_id, PG, Release_date, audio_path, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
         (_id, name, artist_id, album_id, pg, release_date, song_file, picture),
     )
     con.commit()

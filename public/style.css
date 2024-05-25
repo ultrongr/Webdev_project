@@ -25,6 +25,10 @@ body {
     flex-wrap: wrap;
 }
 
+a {
+    text-decoration: none;
+}
+
 /*** 0.1 - NavBar ***/
 .topnav {
     overflow: hidden;
