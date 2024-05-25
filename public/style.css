@@ -29,6 +29,10 @@ a {
     text-decoration: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 /*** 0.1 - NavBar ***/
 .topnav {
     overflow: hidden;
