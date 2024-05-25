@@ -1,0 +1,44 @@
+<div class="profile">
+    <div class="profile-info">
+        <h1>Hello {{username}}!</h1>
+        <button class="logout button" onclick="doLogout()">Logout here</button>
+        <script>
+            function doLogout() {
+                window.location.href = "/logout";
+            }
+        </script>
+    </div>
+
+    <div class="favorite-artists">
+        <h2>Your favorite artists:</h2>
+        <ul>
+            {{#each artists}}
+            <li>
+                <img src="/{{picture}}" class="favorite-artist-image">
+                <div class="favorite-artist-info">
+                    <h2><a href="artist/{{Name}}">{{Name}}</a></h2>
+                </div>
+            </li>
+            {{else}}
+            <h2>You have not added any artists to your favourites yet.</h2>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="favorite-songs">
+        <h2>Your favorite songs:</h2>
+        <ul>
+            {{#each songs}}
+            <li>
+                <img src="{{picture}}" class="favorite-song-image">
+                <div class="favorite-song-info">
+                    <h2><a href="/song-player/{{Name}}">{{Name}}</a></h2>
+                    <h3>By: {{artist.Name}}</h3>
+                </div>
+            </li>
+            {{else}}
+            <h2>You have not added any songs to your favourites yet.</h2>
+            {{/each}}
+        </ul>
+    </div>
+</div>

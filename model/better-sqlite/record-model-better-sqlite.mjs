@@ -91,10 +91,11 @@ export let getUserByUsername = (username) => {
 }
 
 export let getFavouriteArtistsByUsername = (username) => {
-    const stmt = sql.prepare('SELECT * FROM Follows WHERE Visitor_username = ?');
+    const stmt = sql.prepare('SELECT * FROM ARTIST WHERE ID IN (SELECT Artist_id FROM Follows WHERE Visitor_username = ?)');
     let artists;
     try {
         artists = stmt.all(username);
+        
         return artists;
     } catch (error) {
         return error;
@@ -147,7 +148,7 @@ export let getSongsByArtistId = (id) => {
 }
 
 export let getFavouriteSongsByUsername = (username) => {
-    const stmt = sql.prepare('SELECT * FROM Likes WHERE Visitor_username = ?');
+    const stmt = sql.prepare('SELECT * FROM SONG WHERE ID IN (SELECT Song_id FROM Likes WHERE Visitor_username = ?)');
     let songs;
     try {
         songs = stmt.all(username);

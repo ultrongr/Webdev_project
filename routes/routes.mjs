@@ -28,4 +28,6 @@ router.get('/removeFromFollowedArtists/:artistName', recordCompanyController.rem
 
 router.get('/events', recordCompanyController.showFavouriteArtistsEvents);
 
+router.get('/profile', recordCompanyController.profile);
+
 export default router;

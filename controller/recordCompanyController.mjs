@@ -186,3 +186,31 @@ export async function removeFromFollowedArtists(req, res) {
         res.send(`Error: ${error}`);
     }
 }
+
+export async function logout(req, res) {
+    req.session.destroy();
+    res.redirect('/');
+}
+
+export async function profile(req, res) {
+    if (req.session.username) {
+        console.log('Logged in as: ' + req.session.username);
+    } else {
+        console.log('Not logged in');
+        // res.redirect('/login/Please log in to view your profile');
+        res.render('login', { title: 'Login', message: '⚠ Please log in to view your profile' })
+        return;
+    }
+    const followedArtists = model.getFavouriteArtistsByUsername(req.session.username);
+    const favouriteSongs = model.getFavouriteSongsByUsername(req.session.username);
+    for (let i = 0; i < favouriteSongs.length; i++) {
+        favouriteSongs[i].artist = model.getArtistById(favouriteSongs[i].Artist_id);
+    }
+    console.log(followedArtists)
+    console.log(favouriteSongs)
+    try{
+        res.render('profile', { title: 'Profile', username: req.session.username, artists: followedArtists, songs: favouriteSongs });
+    } catch (error) {
+        res.send(`Error: ${error}`);
+    }
+}

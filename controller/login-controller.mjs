@@ -66,7 +66,8 @@ export let doLogIn = function (req, res) {
 }
 
 export let doLogOut = function (req, res) {
+    console.log('Logging out!')
     req.session.destroy();
-    console.log('Logged out!')
+    
     res.redirect('/login');
 }
