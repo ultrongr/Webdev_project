@@ -54,7 +54,7 @@ export async function songPlayer(req, res) {
     }
     const isFavourite = model.isSongFavourite(req.session.username, song.ID);
     try{
-        res.render('song-player', { song: song.Name, artist: artist.Name, image: song.picture, audio: song.YT_link, isFavourite: isFavourite });
+        res.render('song-player', { song: song.Name, artist: artist.Name, image: song.picture, audio: song.Audio_path, isFavourite: isFavourite });
     } catch (error) {
         res.send(`Error: ${error}`);
     }
