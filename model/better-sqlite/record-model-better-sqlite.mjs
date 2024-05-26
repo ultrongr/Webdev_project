@@ -270,7 +270,7 @@ export let getEventsByArtistId = (id) => {
 
 export let getEventsByFavouriteArtists = (username) => {
     const stmt = sql.prepare(`
-    SELECT * FROM EVENT 
+    SELECT DISTINCT * FROM EVENT 
     WHERE ID IN (
         SELECT Event_id FROM Participates WHERE Artist_id IN (
             SELECT Artist_id FROM Follows WHERE Visitor_username = ?)
