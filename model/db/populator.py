@@ -109,26 +109,27 @@ add_to_database(beethoven, beethoven_albums, beethoven_songs)
 from bobmarley import *
 add_to_database(bobmarley, bobmarley_albums, bobmarley_songs)
 
-add_event('1', 
-        '2024-07-12',
-        'Eminem Live Concert',
-        'Concert',
-        'Eminem will be performing live at Wembley Stadium in London. Tickets are available now!',
-        'Wembley Stadium, London',
-        'images/events/eminem_concert.jpg')
+# add_event('1', 
+#         '2024-07-12',
+#         'Eminem Live Concert',
+#         'Concert',
+#         'Eminem will be performing live at Wembley Stadium in London. Tickets are available now!',
+#         'Wembley Stadium, London',
+#         'images/events/eminem_concert.jpg')
 
-add_event('2',
-        '1994-07-02',
-        'Pink Floyd Live Concert',
-        'Concert',
-        'Pink Floyd will be performing live at Earls Court in London. Tickets are available now!',
-        'Earls Court, London',
-        'images/events/pinkfloyd_concert.jpg')
+# add_event('2',
+#         '1994-07-02',
+#         'Pink Floyd Live Concert',
+#         'Concert',
+#         'Pink Floyd will be performing live at Earls Court in London. Tickets are available now!',
+#         'Earls Court, London',
+#         'images/events/pinkfloyd_concert.jpg')
 
-add_Participates('1', '1')
-add_Participates('2', '2')
+# add_Participates('1', '1')
+# add_Participates('2', '2')
 
 import random
+import datetime 
 
 def add_users(n: int):
     for i in range(n):
@@ -163,3 +164,30 @@ def add_follows(n: int, username):
         )
 
 add_users(5_000)
+
+
+def add_events(n: int):
+    event_types = ['Concert', 'Festival', 'Live Show', 'Performance', 'Gig']
+    event_locations = ['London', 'Manchester', 'Birmingham', 'Liverpool', 'Leeds', 'Glasgow', 'Sheffield', 'Edinburgh', 'Bristol', 'Cardiff']
+    current_date = datetime.datetime.now()
+    
+    for i in range(n):
+        img_index = i%5
+        event_title = f'Event {i}'
+        event_type = random.choice(event_types)
+        event_location = random.choice(event_locations)
+        event_date = current_date + datetime.timedelta(days=random.randint(100, 365))
+        event_date = event_date.strftime('%Y-%m-%d, %H:00')
+        cur.execute(
+            "INSERT INTO EVENT (ID, Date, Title, Type, Description, Location, picture) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (f'{i}', f'{event_date}', f'{event_title}', f'{event_type}', f'More info about the event {i}', f'{event_location}', f'images/events/event{img_index}.jpg'),
+        )
+        con.commit()
+    
+    all_artists = cur.execute("SELECT ID FROM ARTIST").fetchall()
+    all_events = cur.execute("SELECT ID FROM EVENT").fetchall()
+    for event in all_events:
+        for artist in random.sample(all_artists, random.randint(1, 2)):
+            add_Participates(artist[0], event[0])
+    
+add_events(15)
