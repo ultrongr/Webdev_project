@@ -128,6 +128,38 @@ add_event('2',
 add_Participates('1', '1')
 add_Participates('2', '2')
 
+import random
 
-add_follows('papaki', '1')
-add_follows('papaki', '2')
+def add_users(n: int):
+    for i in range(n):
+        cur.execute(
+            "INSERT INTO VISITOR (USERNAME, HASH_PASSWORD) VALUES (?, ?)",
+            (f'user{i}', f'password{i}'),
+        )
+        add_likes(random.randint(0, 50), f'user{i}')
+        add_follows(random.randint(0, 5), f'user{i}')
+
+        if i % 100 == 0:
+            print(f'Added {i} users')
+        
+    con.commit()
+    
+def add_likes(n: int, username):
+    songs = cur.execute("SELECT ID FROM SONG").fetchall()
+    for song in random.sample(songs, n):
+        song = song[0]
+        cur.execute(
+            "INSERT INTO Likes (Visitor_username, Song_id) VALUES (?, ?)",
+            (username, song),
+        )
+
+def add_follows(n: int, username):
+    artists = cur.execute("SELECT ID FROM ARTIST").fetchall()
+    for artist in random.sample(artists, n):
+        artist = artist[0]
+        cur.execute(
+            "INSERT INTO Follows (Visitor_username, Artist_id) VALUES (?, ?)",
+            (username, artist),
+        )
+
+add_users(5_000)

@@ -63,7 +63,7 @@ typings/
 # skip large audio files
 public/albums/**/*.mp3
 
-
+**/__pycache__/
 
 package-lock.json
 .env
