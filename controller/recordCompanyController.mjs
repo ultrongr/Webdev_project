@@ -221,8 +221,7 @@ export async function profile(req, res) {
     for (let i = 0; i < favouriteSongs.length; i++) {
         favouriteSongs[i].artist = model.getArtistById(favouriteSongs[i].Artist_id);
     }
-    console.log(followedArtists)
-    console.log(favouriteSongs)
+    
     try {
         res.render('profile', { title: 'Profile', username: req.session.username, artists: followedArtists, songs: favouriteSongs });
     } catch (error) {

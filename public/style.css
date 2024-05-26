@@ -463,12 +463,13 @@ textarea {
 .artist-name {
     font-size: 1.5em;
     text-align: center;
-    text-transform: capitalize;
+    margin-bottom: 10px;
 }
 
 .cover {
     width: 60vh;
-    height: 30%;
+    min-width: 300px;
+    height: auto;
     object-fit: cover;
     margin: auto;
     border-radius: 10%;
@@ -600,18 +601,21 @@ footer p {
     padding: 10px;
     border-radius: 10px; */
     /* width: calc(33% - 20px); */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    text-align: left;
+    text-align: center;
+    width: 25%;
+    min-width: 150px;
+    height: auto;
 }
 
 .favorite-artist-image, .favorite-song-image {
     height: 120px;
-    width: auto;
+    width: 120px;
     
-    margin-right: 15px;
     border-radius: 10px;
     object-fit: cover;
 }

@@ -23,10 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
     seekBar.value = 0;
     pause();
 
-    // Load metadata and set initial duration
-    audio.addEventListener('loadedmetadata', function () {
-        durationText.textContent = formatTime(audio.duration);
-    });
+    // set initial duration
+    durationText.textContent = formatTime(audio.duration);
 
     // Play/Pause functionality
     playButton.addEventListener('click', play);
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const progress = (currentTime / duration) * 100;
         seekBar.value = progress;
         currentTimeText.textContent = formatTime(currentTime);
-        durationText.textContent = formatTime(duration);
     });
 
     // Seek functionality
