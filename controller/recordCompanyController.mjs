@@ -110,7 +110,11 @@ export async function showFavouriteArtistsEvents(req, res) {
     }
     const events = model.getEventsByFavouriteArtists(req.session.username);
     for (let i = 0; i < events.length; i++) {
-        events[i].event_artists = model.getArtistsInEvent(events[i].ID);
+        let event_artists = model.getArtistsInEvent(events[i].ID);
+        events[i].artist1 = event_artists[0].Name;
+        if (event_artists.length > 1) {
+            events[i].artist2 = event_artists[1].Name;
+        }
     }
     try {
         res.render('events', { title: 'Favourite Artists Events', events: events });

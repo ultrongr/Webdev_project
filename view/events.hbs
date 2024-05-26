@@ -10,11 +10,12 @@
                     <p>Date: {{Date}}</p>
                     <p>Location: {{Location}}</p>
                     <p style="display:inline">Participating artists:</p>
-                    {{#each event_artists}}
-                    <pstyle="display: inline"> {{Name}}  </p>
-                    {{/each}}
-
-                </div>
+                    {{#if artist2}}
+                    <p style="display: inline">{{artist1}}, {{artist2}}</p>
+                    {{else}}
+                    <p style="display: inline">{{artist1}}</p>
+                    {{/if}}
+                    </div>
             </li>
             {{else}}
             {{#if artist.Sex}}
