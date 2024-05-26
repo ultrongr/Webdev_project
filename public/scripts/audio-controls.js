@@ -23,9 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
     seekBar.value = 0;
     pause();
 
-    // set initial duration
-    durationText.textContent = formatTime(audio.duration);
-
     // Play/Pause functionality
     playButton.addEventListener('click', play);
     pauseButton.addEventListener('click', pause);
@@ -43,6 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const progress = (currentTime / duration) * 100;
         seekBar.value = progress;
         currentTimeText.textContent = formatTime(currentTime);
+        durationText.textContent = formatTime(duration);
+
+        if (audio.ended) {
+            pause();
+        }
     });
 
     // Seek functionality

@@ -13,7 +13,7 @@ the_marshall_mathers_lp_songs = [
     ["Who Knew", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
     ["Steve Berman (Skit)", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
     ["The Way I Am", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
-    ["The Real Slim Shady", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
+    ["The Real Slim Shady", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', "/albums/The Marshall Mathers LP/08 - The Real Slim Shady.mp3"],
     ["Remember Me?", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
     ["I'm Back", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],
     ["Marshall Mathers", 'Eminem', 'The Marshall Mathers LP', 18, '2000-05-23', None],

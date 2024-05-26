@@ -9,7 +9,7 @@ the_dark_side_of_the_moon_songs = [
     ["Speak to Me", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
     ["Breathe (In the Air)", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
     ["On the Run", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
-    ["Time", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', '/albums/The Dark Side of the Moon/03 Time.mp3'],
+    ["Time", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', '/albums/The Dark Side of the Moon/03 - Time.mp3'],
     ["The Great Gig in the Sky", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
     ["Money", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],
     ["Us and Them", 'Pink Floyd', 'The Dark Side of the Moon', 18, '1973-03-01', None],

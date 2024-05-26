@@ -458,6 +458,7 @@ textarea {
     font-size: 3em;
     text-align: center;
     text-transform: capitalize;
+    margin-bottom: 10px;
 }
 
 .artist-name {
@@ -467,9 +468,10 @@ textarea {
 }
 
 .cover {
-    width: 60vh;
+    width: 45vh;
     min-width: 300px;
-    height: auto;
+    height: 45vh;
+    min-height: 300px;
     object-fit: cover;
     margin: auto;
     border-radius: 10%;

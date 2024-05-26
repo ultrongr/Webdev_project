@@ -10,7 +10,7 @@ exodus_songs = [
     ["So Much Things to Say", "Bob Marley", "Exodus", 0, "1977", None],
     ["Guiltiness", "Bob Marley", "Exodus", 0, "1977", None],
     ["The Heathen", "Bob Marley", "Exodus", 0, "1977", None],
-    ["Exodus", "Bob Marley", "Exodus", 0, "1977", None],
+    ["Exodus", "Bob Marley", "Exodus", 0, "1977", "/albums/Exodus/05 - Exodus.mp3"],
     ["Jamming", "Bob Marley", "Exodus", 0, "1977", None],
     ["Waiting in Vain", "Bob Marley", "Exodus", 0, "1977", None],
     ["Turn Your Lights Down Low", "Bob Marley", "Exodus", 0, "1977", None],

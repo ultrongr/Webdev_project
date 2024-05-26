@@ -22,7 +22,7 @@ sgt_peppers_songs = [
 ]
 
 abbey_road_songs = [
-    ["Come Together", "The Beatles", "Abbey Road", 18, "1969-09-26", None],
+    ["Come Together", "The Beatles", "Abbey Road", 18, "1969-09-26", "/albums/Abbey Road/01 - Come Together.mp3"],
     ["Something", "The Beatles", "Abbey Road", 18, "1969-09-26", None],
     ["Maxwell's Silver Hammer", "The Beatles", "Abbey Road", 18, "1969-09-26", None],
     ["Oh! Darling", "The Beatles", "Abbey Road", 18, "1969-09-26", None],
@@ -41,4 +41,4 @@ abbey_road_songs = [
     ["Her Majesty", "The Beatles", "Abbey Road", 18, "1969-09-26", None]
 ]
 
-thebeatles_songs = sgt_peppers_songs + abbey_road_songs
+thebeatles_songs = abbey_road_songs + sgt_peppers_songs
