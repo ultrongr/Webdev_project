@@ -27,3 +27,12 @@ node start.mjs
 ## Online Deployment
 
 Alternatively you can visit [this link](https://webdev-project.fly.dev/) where the website is hosted on fly.io
+
+## Available Songs
+
+Due to the limited storage space, only a few songs are available for streaming. These are:
+
+- The Beatles \- Come together
+- Eminem \- The Real Slim Shady
+- Pink Floyd \- Time
+- Bob Marley \- Exodus
